@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Details | Cloud Infotech</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed-variant": "#832700",
+                "primary-fixed": "#dbe1ff",
+                "on-primary": "#ffffff",
+                "tertiary-fixed-dim": "#ffb59d",
+                "on-primary-fixed-variant": "#003ea8",
+                "on-error": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "surface": "#f7f9fb",
+                "on-secondary-fixed": "#0d1c2e",
+                "on-secondary": "#ffffff",
+                "primary-fixed-dim": "#b4c5ff",
+                "outline-variant": "#c2c6d9",
+                "inverse-on-surface": "#eff1f3",
+                "primary": "#004bca",
+                "secondary-fixed": "#d5e3fc",
+                "error-container": "#ffdad6",
+                "on-tertiary-fixed": "#390c00",
+                "surface-container-high": "#e6e8ea",
+                "on-primary-container": "#f1f2ff",
+                "secondary-container": "#d5e3fc",
+                "on-error-container": "#93000a",
+                "error": "#ba1a1a",
+                "on-secondary-fixed-variant": "#3a485b",
+                "primary-container": "#0061ff",
+                "surface-variant": "#e0e3e5",
+                "tertiary": "#9d3000",
+                "surface-bright": "#f7f9fb",
+                "on-surface": "#191c1e",
+                "on-tertiary-container": "#ffefeb",
+                "surface-container-highest": "#e0e3e5",
+                "surface-container": "#eceef0",
+                "tertiary-fixed": "#ffdbd0",
+                "inverse-surface": "#2d3133",
+                "on-background": "#191c1e",
+                "surface-container-low": "#f2f4f6",
+                "background": "#f7f9fb",
+                "on-primary-fixed": "#00174b",
+                "surface-dim": "#d8dadc",
+                "inverse-primary": "#b4c5ff",
+                "outline": "#737687",
+                "secondary-fixed-dim": "#b9c7df",
+                "on-tertiary": "#ffffff",
+                "tertiary-container": "#c73f00",
+                "surface-tint": "#0052dc",
+                "on-secondary-container": "#57657a",
+                "secondary": "#515f74",
+                "on-surface-variant": "#424656"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl shadow-sm">
+<div class="flex items-center justify-between px-6 py-3 max-w-7xl mx-auto">
+<div class="text-xl font-bold tracking-tight text-slate-900 font-headline">Cloud Infotech</div>
+<div class="hidden md:flex items-center space-y-0 space-x-8">
+<a class="font-manrope text-sm font-medium text-blue-600 border-b-2 border-blue-600 py-1" href="#">Products</a>
+<a class="font-manrope text-sm font-medium text-slate-600 hover:text-blue-500 transition-colors py-1" href="#">Solutions</a>
+<a class="font-manrope text-sm font-medium text-slate-600 hover:text-blue-500 transition-colors py-1" href="#">Support</a>
+</div>
+<div class="flex items-center space-x-5">
+<button class="text-slate-600 hover:text-blue-500 transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="text-slate-600 hover:text-blue-500 transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 max-w-7xl mx-auto px-6">
+<!-- Breadcrumbs -->
+<nav class="mb-8 flex items-center space-x-2 text-sm text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Products</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Security Systems</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-medium text-on-surface">Sentinel Prime 4K</span>
+</nav>
+<!-- Product Hero Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Gallery & Main Image -->
+<div class="lg:col-span-7 flex flex-col-reverse md:flex-row gap-6">
+<!-- Thumbnails -->
+<div class="flex md:flex-col gap-4 overflow-x-auto no-scrollbar md:w-24">
+<div class="w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden cursor-pointer border-2 border-primary bg-surface-container-lowest p-2 flex-shrink-0">
+<img class="w-full h-full object-contain" data-alt="close-up studio shot of a sleek modern black security camera with a glowing blue lens ring" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBroNzu4Un_oL06vruwnp9-b7vd8UDy_DM09lbTitZH-Nr-YbwTdmT9RU99hw7sFyBN8j5JBuJSNY05Wwk49hhjJ-I3dz94VYTJ6xjC_jskO6P5LYHJh2pBi67ldjI1WMWbgL04UQ0KIEcQIBAFnWucNLQAwk6gTQ9sLofS7PK_-p9jSVHp17k98mt-jeluZY2oMQbR0HK_bCF0Acd7O-h8-QXHaeuiK9fFEQzDCKqHJV54A2I_7n8mZ6k_ndtjTgu2Mvd_SZJhZAGC"/>
+</div>
+<div class="w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden cursor-pointer bg-surface-container-low hover:bg-surface-container-high transition-colors p-2 flex-shrink-0">
+<img class="w-full h-full object-contain" data-alt="security camera mounted on a modern concrete wall overlooking a residential driveway in daytime" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvInRX-YmaWR15lQL66NvD2cvIHiz5fdUX7oikhJEpyBOr51MgOnKh92ZCzk0OwPuxL2V5MIJT8sLngLs1DprGbqYAAEd3jJ38Ml7WqyDgiuPJGtUaI6FneUhPinfTiCeoLRDKc7wfbbRegrcAh53okkVXh7PPr-N2H9OgkUNh7Jr9jKNNyW1j2Kl1sYvRGia6mzKwiCMk5C-AsBWEtznBqTttINGZwlAr7A8_jB1zmYjmYpwdhf1JjIorPGB6k6JccpCMGk6tB976"/>
+</div>
+<div class="w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden cursor-pointer bg-surface-container-low hover:bg-surface-container-high transition-colors p-2 flex-shrink-0">
+<img class="w-full h-full object-contain" data-alt="mobile smartphone screen displaying a 4K clear night vision feed of a home entrance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOiNbL8_1btlXJqdwX54N_rUpyiTgS97OGYdtB6cSzapSkfAu0E9o5sYbeOEIgedSuZcg3ULRR6sEwLd4UZXA2ZpebE-1KeRGGi4C3zmKFuvDnaF6LLN0OT7-bNcyjgOXyzFsxtSAMU7GIZV1QW0ZhifdzYi8mxrHNet30lCmrn-0eLVp_G6mC8ijjgZDxh_JtQUiqxb-UpnQNZ_La2YW1JNTgk3gfUYvmEAJopQW3SimPyUYfRLtU6iELq_-ZrT2x4oh0KSKRxgLp"/>
+</div>
+</div>
+<!-- Main Preview -->
+<div class="flex-1 bg-surface-container-lowest rounded-[2rem] p-12 flex items-center justify-center relative shadow-sm overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+<img class="relative z-10 max-h-[500px] w-auto object-contain drop-shadow-2xl" data-alt="premium high-definition security camera featuring a glossy black finish and metallic accents in a professional studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDBi-5wxfIW_jxGf7DjPu6Ir_9LFIHF_fI5cRvqNcgKHT6JAAAk8s-zFvnvrXDfhQIobTO-BcIX4zUuKeFz8crONKX3PToTTatBvHv3lLI6WL9bTuZ0FLvZXeaxn1_Y3tyD3F9BEAZNYGWM53d3cmCku3Rc7-uSUpXIxPusCAopVpLkp4P_KA6TFujjH2Z9Pk_mB48aH6qkXEKFJa2hbjyd6i2Ihz_khdX_K2axZPgOZy7QMrodPM934S2rlJVSpWQ7cIUVYzZJovT"/>
+</div>
+</div>
+<!-- Product Info -->
+<div class="lg:col-span-5 space-y-8">
+<div>
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+                        In Stock
+                    </div>
+<h1 class="text-4xl font-extrabold font-headline text-on-surface tracking-tight mb-2">Sentinel Prime 4K</h1>
+<p class="text-on-surface-variant leading-relaxed">Advanced Al-powered security surveillance with ultra-low light precision and real-time biometric detection.</p>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-4xl font-bold font-headline text-primary">$599.00</span>
+<span class="text-on-surface-variant line-through">$749.00</span>
+</div>
+<!-- Key Specs Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex items-center space-x-3 p-4 rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-primary" data-icon="4k">4k</span>
+<span class="text-sm font-medium">4K Resolution</span>
+</div>
+<div class="flex items-center space-x-3 p-4 rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-primary" data-icon="nights_stay">nights_stay</span>
+<span class="text-sm font-medium">Night Vision</span>
+</div>
+<div class="flex items-center space-x-3 p-4 rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-primary" data-icon="wifi">wifi</span>
+<span class="text-sm font-medium">Wireless</span>
+</div>
+<div class="flex items-center space-x-3 p-4 rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-primary" data-icon="shield_with_heart">shield_with_heart</span>
+<span class="text-sm font-medium">Al Protection</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="space-y-4 pt-4">
+<div class="grid grid-cols-2 gap-4">
+<button class="bg-surface-container-high text-on-surface py-4 px-6 rounded-lg font-semibold hover:bg-surface-container-highest transition-all flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span>Add to Cart</span>
+</button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white py-4 px-6 rounded-lg font-semibold shadow-lg shadow-primary/20 hover:shadow-xl transition-all active:scale-95">
+                            Buy Now
+                        </button>
+</div>
+<!-- Premium CTA -->
+<button class="w-full bg-inverse-surface text-inverse-on-surface py-5 px-6 rounded-xl font-bold flex items-center justify-between group overflow-hidden relative">
+<div class="flex items-center space-x-4 relative z-10">
+<div class="bg-primary p-2 rounded-lg">
+<span class="material-symbols-outlined" data-icon="construction">construction</span>
+</div>
+<div class="text-left">
+<span class="block text-sm font-medium opacity-80 uppercase tracking-widest">White-Glove Service</span>
+<span class="block text-lg">Book Professional Installation</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-3xl group-hover:translate-x-2 transition-transform relative z-10" data-icon="arrow_forward">arrow_forward</span>
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Details Tabs Section -->
+<div class="mt-24">
+<div class="flex space-x-12 border-b-0 mb-8 overflow-x-auto no-scrollbar">
+<button class="text-lg font-bold font-headline border-b-4 border-primary pb-4 whitespace-nowrap">Description</button>
+<button class="text-lg font-semibold font-headline text-on-surface-variant hover:text-primary pb-4 transition-colors whitespace-nowrap">Full Specs</button>
+<button class="text-lg font-semibold font-headline text-on-surface-variant hover:text-primary pb-4 transition-colors whitespace-nowrap">Customer Reviews (128)</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+<div class="lg:col-span-2 space-y-6">
+<h3 class="text-2xl font-bold font-headline">Unparalleled Security Intelligence</h3>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                        The Sentinel Prime 4K represents the pinnacle of modern surveillance. Engineered for both commercial and luxury residential use, it features a bespoke 4K sensor that captures crystal-clear detail even in near-total darkness. With integrated Al processing, it differentiates between people, vehicles, and pets in real-time, reducing false alarms by 99%.
+                    </p>
+<ul class="space-y-4">
+<li class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="check_circle">check_circle</span>
+<span>Secure Cloud Archiving with 128-bit encryption.</span>
+</li>
+<li class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="check_circle">check_circle</span>
+<span>Weatherproof IP67 rated for extreme environmental conditions.</span>
+</li>
+<li class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="check_circle">check_circle</span>
+<span>Two-way audio with active noise cancellation.</span>
+</li>
+</ul>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-8">
+<h4 class="font-bold mb-4">Technical Highlights</h4>
+<div class="space-y-4 text-sm">
+<div class="flex justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-on-surface-variant">Sensor</span>
+<span class="font-medium">8MP Sony STARVIS 2</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-on-surface-variant">Field of View</span>
+<span class="font-medium">145° Ultra-Wide</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-on-surface-variant">Connectivity</span>
+<span class="font-medium">Wi-Fi 6 / PoE</span>
+</div>
+<div class="flex justify-between pb-2">
+<span class="text-on-surface-variant">Storage</span>
+<span class="font-medium">MicroSD (up to 1TB)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Related Products Section -->
+<div class="mt-32">
+<div class="flex items-end justify-between mb-10">
+<div>
+<h2 class="text-3xl font-extrabold font-headline tracking-tight">Complete Your Ecosystem</h2>
+<p class="text-on-surface-variant">Recommended pairings for total protection.</p>
+</div>
+<div class="flex space-x-2">
+<button class="p-3 rounded-full bg-surface-container-high hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<button class="p-3 rounded-full bg-surface-container-high hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="flex space-x-6 overflow-x-auto no-scrollbar pb-8">
+<!-- Related Card 1 -->
+<div class="min-w-[300px] bg-surface-container-lowest rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-transparent hover:border-primary/10">
+<div class="h-48 mb-6 rounded-xl bg-surface-container-low flex items-center justify-center p-4">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="smart video doorbell with a modern metallic finish and integrated light ring mounted on a wooden frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBorqaLooWu4uZniKILXI1zfXNpV8ruDfZQXwDeLZ1K_rVrccr9o2pf6ICLVEOTrDaWGOpaSChxb8nof1au_E4JSgak8Mw91I4I9VyWeYxcWnj0JP8z_-uyXb5z5N60ueUnl0J4V4oFQ-z-FBA6Qo-edrkr1gPQmAMHH-D3X8Ku2FIRA7l1ywl6u-dc8LD0FaZIKcvWE9DIHlnonTv43pkSee4bqJQ3zuaFGdLeGwcig9XUdUTDo9UniNMeh__5xYokOw17Hgepsjx_"/>
+</div>
+<span class="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Accessories</span>
+<h3 class="font-bold text-lg mb-1">Sentinel Hub Pro</h3>
+<p class="text-primary font-bold">$129.00</p>
+</div>
+<!-- Related Card 2 -->
+<div class="min-w-[300px] bg-surface-container-lowest rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-transparent hover:border-primary/10">
+<div class="h-48 mb-6 rounded-xl bg-surface-container-low flex items-center justify-center p-4">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="high-power outdoor floodlight security system with dual sensors and matte white casing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfzmy3T26wcmqcfRnKDapje9Je6jfX34y2jx2bY1gdpiCtO6xj7ZyVeK5bOSPK676Su1BAvH4tHDpqGs8ffNvbKTlKo_kq58QsbQouXfI6o3O-Sz9o1n9CM_J7kcSzAy-_kotvaFt17qAOqNJp6VsCiiOpRsjaEyVabujRrLYSfQ3fp9WP4yIVuFNj5UYE64eU6s3UkN9zBoNd9NhCZhl3psTgNMksL5U_Vch0m6EAdPLAkiQBgEuNAUnE0MZVI134gAInFUUEaS6D"/>
+</div>
+<span class="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Lighting</span>
+<h3 class="font-bold text-lg mb-1">Nova Floodlight Cam</h3>
+<p class="text-primary font-bold">$249.00</p>
+</div>
+<!-- Related Card 3 -->
+<div class="min-w-[300px] bg-surface-container-lowest rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-transparent hover:border-primary/10">
+<div class="h-48 mb-6 rounded-xl bg-surface-container-low flex items-center justify-center p-4">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="modern smart lock with numerical keypad and biometric fingerprint scanner in polished chrome" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0ejQCRbPSKZxAq6TMUN1Wd1XFBocxdJ1SBSfHG6gpuEC7KXIb0sGWgZ4QAwsIlR6-nCM9h97Mpb_CwBD7jZzlsRTQemqSerQxYKU1uWQNwB890UkQxFtBeNFc0MXjoDB_C6BOgcLMFdoRYkJa9J8b6cCQND6J24LD883M9Qyi1GNK1iKxr6hmdzOPuwT9AIveZl6HPqHNyX6haImkY5dYx7TJ0eSSozJgIN0hk9MTYjhW9AHkhENSD3i0St4aaByD8Ko6nZJYJJq2"/>
+</div>
+<span class="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Access</span>
+<h3 class="font-bold text-lg mb-1">Vault Biometric Lock</h3>
+<p class="text-primary font-bold">$189.00</p>
+</div>
+<!-- Related Card 4 -->
+<div class="min-w-[300px] bg-surface-container-lowest rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-transparent hover:border-primary/10">
+<div class="h-48 mb-6 rounded-xl bg-surface-container-low flex items-center justify-center p-4">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="compact white indoor security camera with a swivel base and minimalist design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANfU9vm2Y8bDkiLJ7r3yFKh_rnHIV2EsJw4PdsJMvq-jh8Z3aL9LyEPM9OH0xDwqifnxeKzdnZS5TffxkjFl-8Yp26BGpn0aKdgC8Jb2Wa_jv2UZVf8gbUkYWr-48Myy0VxRgrZIvtvlDIZRfu2NAtxbx8e86HR8ALwyxcEIufCqeo4zy3iDceQBtv9ocYSkTwkeXr_ZmPjzGTSotmjuTUOVoyVPgcLENpTWbeWAt0UjVyNgG-4RzxNawLx56u7xjxVXaBO-SdJo-y"/>
+</div>
+<span class="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Indoor</span>
+<h3 class="font-bold text-lg mb-1">Omni View 360</h3>
+<p class="text-primary font-bold">$89.00</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 border-t-0 mt-auto">
+<div class="py-12 px-8 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+<div class="space-y-4">
+<div class="text-sm font-bold text-slate-900">Cloud Infotech</div>
+<p class="text-xs text-slate-500 uppercase tracking-widest leading-relaxed">Securing the digital horizon with precision engineered hardware and Al cloud solutions.</p>
+</div>
+<div class="space-y-4">
+<div class="text-xs font-bold text-slate-900 uppercase tracking-widest">Solutions</div>
+<ul class="space-y-2">
+<li><a class="text-xs text-slate-500 uppercase tracking-widest hover:underline decoration-blue-500" href="#">Residential</a></li>
+<li><a class="text-xs text-slate-500 uppercase tracking-widest hover:underline decoration-blue-500" href="#">Commercial</a></li>
+<li><a class="text-xs text-slate-500 uppercase tracking-widest hover:underline decoration-blue-500" href="#">Cloud Services</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<div class="text-xs font-bold text-slate-900 uppercase tracking-widest">Company</div>
+<ul class="space-y-2">
+<li><a class="text-xs text-slate-500 uppercase tracking-widest hover:underline decoration-blue-500" href="#">About Us</a></li>
+<li><a class="text-xs text-slate-500 uppercase tracking-widest hover:underline decoration-blue-500" href="#">Security Certification</a></li>
+<li><a class="text-xs text-slate-500 uppercase tracking-widest hover:underline decoration-blue-500" href="#">Careers</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<div class="text-xs font-bold text-slate-900 uppercase tracking-widest">Support</div>
+<ul class="space-y-2">
+<li><a class="text-xs text-slate-500 uppercase tracking-widest hover:underline decoration-blue-500" href="#">Privacy Policy</a></li>
+<li><a class="text-xs text-slate-500 uppercase tracking-widest hover:underline decoration-blue-500" href="#">Terms of Service</a></li>
+<li><a class="text-xs text-slate-500 uppercase tracking-widest hover:underline decoration-blue-500" href="#">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="py-6 px-8 max-w-7xl mx-auto border-t border-slate-200/50">
+<p class="text-xs text-slate-500 uppercase tracking-widest">© 2024 Cloud Infotech Pte. Ltd. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

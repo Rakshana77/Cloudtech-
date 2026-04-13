@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cloud Infotech | Professional Surveillance Solutions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#832700",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb59d",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#f7f9fb",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "outline-variant": "#c2c6d9",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary": "#004bca",
+                    "secondary-fixed": "#d5e3fc",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#390c00",
+                    "surface-container-high": "#e6e8ea",
+                    "on-primary-container": "#f1f2ff",
+                    "secondary-container": "#d5e3fc",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "primary-container": "#0061ff",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary": "#9d3000",
+                    "surface-bright": "#f7f9fb",
+                    "on-surface": "#191c1e",
+                    "on-tertiary-container": "#ffefeb",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container": "#eceef0",
+                    "tertiary-fixed": "#ffdbd0",
+                    "inverse-surface": "#2d3133",
+                    "on-background": "#191c1e",
+                    "surface-container-low": "#f2f4f6",
+                    "background": "#f7f9fb",
+                    "on-primary-fixed": "#00174b",
+                    "surface-dim": "#d8dadc",
+                    "inverse-primary": "#b4c5ff",
+                    "outline": "#737687",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#c73f00",
+                    "surface-tint": "#0052dc",
+                    "on-secondary-container": "#57657a",
+                    "secondary": "#515f74",
+                    "on-surface-variant": "#424656"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift { transition: background-color 0.3s ease; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl shadow-sm">
+<div class="flex items-center justify-between px-6 py-3 max-w-7xl mx-auto">
+<div class="text-xl font-bold tracking-tight text-slate-900 font-headline">Cloud Infotech</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-headline text-sm font-medium text-blue-600 border-b-2 border-blue-600 pb-1" href="#">Products</a>
+<a class="font-headline text-sm font-medium text-slate-600 hover:text-blue-500 transition-colors" href="#">Solutions</a>
+<a class="font-headline text-sm font-medium text-slate-600 hover:text-blue-500 transition-colors" href="#">Support</a>
+</div>
+<div class="flex items-center space-x-5">
+<div class="hidden lg:flex items-center bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant/15">
+<span class="material-symbols-outlined text-outline text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm ml-2 w-48" placeholder="Search devices..." type="text"/>
+</div>
+<button class="relative text-slate-600 scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</button>
+<button class="text-slate-600 scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto pt-24 pb-12 px-6 flex flex-col md:flex-row gap-8">
+<!-- SideNavBar / Filter (Shared Component Adaptation) -->
+<aside class="w-full md:w-72 flex flex-col space-y-8 bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/50">
+<div>
+<h3 class="font-headline font-bold text-on-surface mb-4">Price Range</h3>
+<div class="space-y-4">
+<input class="w-full accent-primary" max="2000" min="0" step="50" type="range"/>
+<div class="flex justify-between text-xs font-medium text-on-surface-variant">
+<span>$0</span>
+<span>$2,000+</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface mb-4">Brand</h3>
+<div class="flex flex-col space-y-3">
+<label class="flex items-center space-x-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary h-5 w-5" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">Sentinel Pro</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary h-5 w-5" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">CloudEye</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary h-5 w-5" type="checkbox"/>
+<span class="text-sm text-on-surface font-semibold">Infotech Labs</span>
+</label>
+</div>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface mb-4">Camera Type</h3>
+<div class="flex flex-col space-y-2">
+<button class="flex items-center justify-between p-3 rounded-lg bg-blue-50/50 text-blue-600 font-bold text-sm">
+<div class="flex items-center">
+<span class="material-symbols-outlined mr-2">home_work</span>
+<span>Indoor</span>
+</div>
+<span class="text-xs bg-white px-2 py-0.5 rounded-full shadow-sm">24</span>
+</button>
+<button class="flex items-center justify-between p-3 rounded-lg text-slate-500 hover:bg-slate-50 transition-colors text-sm">
+<div class="flex items-center">
+<span class="material-symbols-outlined mr-2">park</span>
+<span>Outdoor</span>
+</div>
+<span class="text-xs">18</span>
+</button>
+<button class="flex items-center justify-between p-3 rounded-lg text-slate-500 hover:bg-slate-50 transition-colors text-sm">
+<div class="flex items-center">
+<span class="material-symbols-outlined mr-2">wifi</span>
+<span>Wireless</span>
+</div>
+<span class="text-xs">12</span>
+</button>
+</div>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface mb-4">Resolution</h3>
+<div class="grid grid-cols-2 gap-2">
+<button class="px-3 py-2 border border-outline-variant/30 rounded-lg text-xs font-semibold hover:border-primary hover:text-primary transition-all">HD (1080p)</button>
+<button class="px-3 py-2 border border-primary bg-primary/5 text-primary rounded-lg text-xs font-bold transition-all">4K Ultra HD</button>
+<button class="px-3 py-2 border border-outline-variant/30 rounded-lg text-xs font-semibold hover:border-primary hover:text-primary transition-all">2K QHD</button>
+<button class="px-3 py-2 border border-outline-variant/30 rounded-lg text-xs font-semibold hover:border-primary hover:text-primary transition-all">8K Stealth</button>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/10">
+<button class="w-full py-3 rounded-xl bg-surface-container-high text-on-surface font-bold text-sm hover:bg-surface-container-highest transition-colors">
+                    Clear Filters
+                </button>
+</div>
+</aside>
+<!-- Product Listing Content -->
+<section class="flex-1">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<nav class="flex items-center space-x-2 text-xs font-medium text-outline mb-2">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Products</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface">Surveillance Cameras</span>
+</nav>
+<h1 class="text-3xl font-headline font-extrabold text-on-surface tracking-tight">Digital Sentinels</h1>
+<p class="text-on-surface-variant text-sm mt-1">Showing <span class="font-bold text-primary">124</span> precision instruments</p>
+</div>
+<div class="flex items-center space-x-4">
+<span class="text-sm font-medium text-on-surface-variant hidden lg:inline">Sort by:</span>
+<select class="bg-white border-none rounded-xl text-sm font-bold text-on-surface shadow-sm focus:ring-primary py-2 px-4 pr-8">
+<option>Popularity</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest Arrivals</option>
+</select>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Product Card 1 -->
+<div class="group relative flex flex-col bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative h-64 overflow-hidden bg-surface-container-low">
+<img alt="Sentinel Cam" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Modern sleek white security camera mounted on a minimal grey wall with soft daylight and professional depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8MML1bTInoFUUYMLv8Fy_IIJegPVK1wtRufbvH3pO15c_R9bGUfa0kNlc9poj4qne8JCoToN383DphtUYQGYTRoZlKNJ_Ydd1FzDCV53OvnVBbSsJ-LOJrJCpXOKTcJ00bAgjmRCpejokfHRYWrZUaJqMPweq1ZSeU76enQH6hOZ2zTkXMRQWQHh1p7F3A9KelYiRilsZc9eUoIPxOqnxPkOnI5_Ui-RH1mqUsIkkRJGzvam_pT5VFpLld_IRgsFood4fHrNUhpUK"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="bg-white/80 backdrop-blur text-on-surface p-2 rounded-full shadow-sm hover:bg-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">New Arrival</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline font-bold text-lg text-on-surface leading-tight">Sentinel X1 Ultra-Wide</h2>
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold ml-1">4.9</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant font-medium mb-4">4K Resolution • AI Motion Detection • Weatherproof</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-on-surface leading-none">$299.00</span>
+<span class="text-xs text-error font-semibold line-through decoration-error/30 mt-1">$349.00</span>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md active:scale-95 transition-transform">
+                                Quick Add
+                            </button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative flex flex-col bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative h-64 overflow-hidden bg-surface-container-low">
+<img alt="Dome Pro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Black dome security camera mounted on an industrial ceiling with dramatic rim lighting and tech aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw3jQFhY8f0ej7qscGgsiPJwzikoY9E7x5tSefUfnr8HXvVHlxzuhIIvi6Q9-f2IsIn19gn9nwUnX2EK_Zcj4Gm09TL7lkZY1i5TqKBt2vBFSa7vauDl4kIMrUjDkN0IYa9fNX7Rv-0cG2b4KiTmdzhcjPeCnBa_lACNEJcXylhdmEGNDqC6dBUbo2gJGnqZ8RgF0f5GulTh7KlM_Gwe4cXFcggkp2--1dK5AA0Mdiw0aopWcFMH9OjT1N_DmjAK8NVkO_lxv-thJA"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="bg-white/80 backdrop-blur text-primary p-2 rounded-full shadow-sm" style="font-variation-settings: 'FILL' 1;">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-tertiary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">Sale -15%</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline font-bold text-lg text-on-surface leading-tight">StealthDome 360</h2>
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold ml-1">4.8</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant font-medium mb-4">Dual-Lens Panoramic • IR Night Vision • 2-Way Audio</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-on-surface leading-none">$189.00</span>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md active:scale-95 transition-transform">
+                                Quick Add
+                            </button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative flex flex-col bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative h-64 overflow-hidden bg-surface-container-low">
+<img alt="CloudEye Home" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Small white indoor smart camera on a wooden bookshelf next to plants with soft bright interior lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-oPOV1Sr87zqwxKodwhgSbj2iBDRFZWqYZJCiZ2Y1Do0EKSib4UWv3Qi-qtyZoWCorq8Zo6OFpmFuhVyVnfzkMydxdW7LuCZciNEQSjIbIwoAliJGk_Oq5Nfx3LxOIEv0t74zFa9UChomTeQCeLWDFxBiD8VScLb5BLqE_u6z0c5aesX6SBC5aw4YRxOM6EorkqTGVlwndG316LluddGjJyeANwDG4xfsExdzLlOztRfRgsykrn3is8wzg04ny80IPFh4kz0_GLYV"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="bg-white/80 backdrop-blur text-on-surface p-2 rounded-full shadow-sm hover:bg-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline font-bold text-lg text-on-surface leading-tight">NurseryWatch Pro</h2>
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold ml-1">4.7</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant font-medium mb-4">Cry Detection • Temperature Sensor • WiFi Direct</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-on-surface leading-none">$129.00</span>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md active:scale-95 transition-transform">
+                                Quick Add
+                            </button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group relative flex flex-col bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative h-64 overflow-hidden bg-surface-container-low">
+<img alt="CloudEye Home" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Professional grade outdoor bullet camera mounted on a brick wall during a rainy night with blue neon reflection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVyLl83707ey9QP5_iAevbmmL5NV9wKZcVeBNaAV5SoEllg79hLxV2x8vl-tODeR3KnN6aHbVTCVNwD3ybWVJzwHWes8ZQPMDKunIXGrtUzUYSzz2VsZh4vWVK0Vlpqd1M0T-BTERjlyh2u5f8Qs0_gEYuzoR-Jxfh9ZzjnALVi7iMFN5LTYOYU0dNzvzBuBchjr2VLVZ5Bq30KHi5WmEK4jxfnXd3HZjj3RvynriBa_nAkRT0TZYKPoVahSwetn0lFw7Ja4wimdO-"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="bg-white/80 backdrop-blur text-on-surface p-2 rounded-full shadow-sm hover:bg-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline font-bold text-lg text-on-surface leading-tight">Industrial Guard 4K</h2>
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold ml-1">5.0</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant font-medium mb-4">Full Metal Casing • Long Range IR • PoE Support</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-on-surface leading-none">$449.00</span>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md active:scale-95 transition-transform">
+                                Quick Add
+                            </button>
+</div>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group relative flex flex-col bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative h-64 overflow-hidden bg-surface-container-low">
+<img alt="CloudEye Home" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Minimalist ring-style smart doorbell with integrated camera in a modern entryway with soft sunset light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfBYCjFofMPDna389enqv3nOdTr7XQxfrXxgOtrB7zXvEGbvUke2QdBY8uOaBl-utMU35vvv3-mGWQzHZp6ZopIa1MQ8Pj45f_o_CrkjRwVFwitHklxPrcySWAAlPWpMHgkV-SXYrozH39m7pYab-NNzIJUlvoxIy3npApjTMXGGZLJ0m4ObWG9twWwEbDA7mgIZwLQ4Ed-sRPsMDh2wOiqORbKPWpsRDbKX7L4pzP0l1Yz5tk5GlwzZBvi39Tzkfc4lt0xmoQ0oIh"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="bg-white/80 backdrop-blur text-on-surface p-2 rounded-full shadow-sm hover:bg-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">Bestseller</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline font-bold text-lg text-on-surface leading-tight">PortalView Pro</h2>
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold ml-1">4.9</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant font-medium mb-4">Face Recognition • Cloud Storage • Zero-Lag Audio</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-on-surface leading-none">$215.00</span>
+<span class="text-xs text-error font-semibold line-through decoration-error/30 mt-1">$259.00</span>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md active:scale-95 transition-transform">
+                                Quick Add
+                            </button>
+</div>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group relative flex flex-col bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative h-64 overflow-hidden bg-surface-container-low">
+<img alt="CloudEye Home" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Abstract hardware components of a high-tech surveillance server with blue glowing led lights and metallic finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRbtRlYhdrqHNwjqSn8SxxNFAwJzu5XxH0RkmNvpF2B_4ve21BE63guy-DtzdDaqvGZZUmf92SFfV9rKJpdFdi79yAE5_0-SAaV7RnWkBTF6LS04kYLtvkT8KIIGsngPXVKy6smxWwPxCYIlVjo0cxH-KOPauak6vKfTvYt5mARfpNL0aALEXXnXAGiSgBqq2IRKrztt6nase9LRA9jrJO22sNH1-TrK2byNb8RYw4jA8QsVFFwWppB9krKN5QirIK1C4KOanLKZTm"/>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="bg-white/80 backdrop-blur text-on-surface p-2 rounded-full shadow-sm hover:bg-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline font-bold text-lg text-on-surface leading-tight">HubCentral NVR</h2>
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold ml-1">4.6</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant font-medium mb-4">8-Channel Support • 4TB HDD Included • Mobile Sync</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-on-surface leading-none">$599.00</span>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md active:scale-95 transition-transform">
+                                Quick Add
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center">
+<nav class="flex items-center space-x-1">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant font-medium">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant font-medium">3</button>
+<span class="px-2 text-outline">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant font-medium">12</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-slate-50 dark:bg-slate-950 w-full mt-auto">
+<div class="py-12 px-8 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+<div class="space-y-4">
+<div class="text-sm font-bold text-slate-900 dark:text-slate-100 font-headline uppercase">Cloud Infotech</div>
+<p class="text-xs text-slate-500 font-body normal-case tracking-normal">Securing the digital frontier with precision engineering and cloud-first surveillance architecture.</p>
+</div>
+<div>
+<h4 class="font-inter text-xs uppercase tracking-widest text-blue-600 mb-6">Company</h4>
+<div class="flex flex-col space-y-3">
+<a class="text-xs text-slate-500 hover:underline decoration-blue-500 uppercase tracking-widest" href="#">About Us</a>
+<a class="text-xs text-slate-500 hover:underline decoration-blue-500 uppercase tracking-widest" href="#">Case Studies</a>
+<a class="text-xs text-slate-500 hover:underline decoration-blue-500 uppercase tracking-widest" href="#">Careers</a>
+</div>
+</div>
+<div>
+<h4 class="font-inter text-xs uppercase tracking-widest text-blue-600 mb-6">Support</h4>
+<div class="flex flex-col space-y-3">
+<a class="text-xs text-slate-500 hover:underline decoration-blue-500 uppercase tracking-widest" href="#">Contact Us</a>
+<a class="text-xs text-slate-500 hover:underline decoration-blue-500 uppercase tracking-widest" href="#">Security Certification</a>
+<a class="text-xs text-slate-500 hover:underline decoration-blue-500 uppercase tracking-widest" href="#">Technical Docs</a>
+</div>
+</div>
+<div>
+<h4 class="font-inter text-xs uppercase tracking-widest text-blue-600 mb-6">Newsletter</h4>
+<div class="flex bg-white rounded-lg p-1 shadow-sm border border-outline-variant/10">
+<input class="bg-transparent border-none focus:ring-0 text-xs flex-1 px-2 uppercase tracking-widest" placeholder="Email Address" type="email"/>
+<button class="bg-primary text-white p-2 rounded-md">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="border-t border-slate-200/50 py-6 max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-inter text-xs uppercase tracking-widest text-slate-400">
+                © 2024 Cloud Infotech Pte. Ltd. All rights reserved.
+            </div>
+<div class="flex space-x-6">
+<a class="text-xs text-slate-500 hover:underline decoration-blue-500 uppercase tracking-widest" href="#">Privacy Policy</a>
+<a class="text-xs text-slate-500 hover:underline decoration-blue-500 uppercase tracking-widest" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Dashboard - Cloud Infotech</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#832700",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline-variant": "#c2c6d9",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary": "#004bca",
+                        "secondary-fixed": "#d5e3fc",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#390c00",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary-container": "#f1f2ff",
+                        "secondary-container": "#d5e3fc",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "primary-container": "#0061ff",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary": "#9d3000",
+                        "surface-bright": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-container": "#ffefeb",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "tertiary-fixed": "#ffdbd0",
+                        "inverse-surface": "#2d3133",
+                        "on-background": "#191c1e",
+                        "surface-container-low": "#f2f4f6",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#00174b",
+                        "surface-dim": "#d8dadc",
+                        "inverse-primary": "#b4c5ff",
+                        "outline": "#737687",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#c73f00",
+                        "surface-tint": "#0052dc",
+                        "on-secondary-container": "#57657a",
+                        "secondary": "#515f74",
+                        "on-surface-variant": "#424656"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+        h1, h2, h3 {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl shadow-sm">
+<div class="flex items-center justify-between px-6 py-3 max-w-7xl mx-auto">
+<div class="text-xl font-bold tracking-tight text-slate-900">Cloud Infotech</div>
+<div class="hidden md:flex space-x-8">
+<a class="font-manrope text-sm font-medium text-slate-600 hover:text-blue-500 transition-colors" href="#">Products</a>
+<a class="font-manrope text-sm font-medium text-slate-600 hover:text-blue-500 transition-colors" href="#">Solutions</a>
+<a class="font-manrope text-sm font-medium text-slate-600 hover:text-blue-500 transition-colors" href="#">Support</a>
+</div>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-slate-600 cursor-pointer transition-transform active:scale-100 scale-95" data-icon="shopping_cart">shopping_cart</span>
+<span class="material-symbols-outlined text-blue-600 cursor-pointer transition-transform active:scale-100 scale-95" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</nav>
+<div class="pt-20 pb-12 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-[288px_1fr] gap-8">
+<aside class="flex flex-col h-fit sticky top-24">
+<div class="w-full bg-white rounded-2xl p-4 shadow-xl shadow-slate-200/50 flex flex-col">
+<div class="px-4 py-3 mb-4">
+<h2 class="text-slate-500 text-xs font-bold tracking-widest uppercase mb-1">My Account</h2>
+<p class="text-slate-400 text-[10px] uppercase tracking-wider">User Dashboard</p>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-500 hover:bg-slate-50 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-blue-600" data-icon="person">person</span>
+<span class="font-inter text-sm font-medium">Profile</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-blue-600 font-bold bg-blue-50/50 rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="package_2">package_2</span>
+<span class="font-inter text-sm">My Orders</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-500 hover:bg-slate-50 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-blue-600" data-icon="location_on">location_on</span>
+<span class="font-inter text-sm font-medium">Saved Addresses</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-500 hover:bg-slate-50 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-blue-600" data-icon="favorite">favorite</span>
+<span class="font-inter text-sm font-medium">Wishlist</span>
+</a>
+</nav>
+<div class="mt-8 pt-6 border-t border-slate-100 px-4">
+<a class="flex items-center space-x-3 text-slate-400 hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-inter text-sm font-medium">Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<main class="space-y-8">
+<header class="bg-white rounded-2xl p-8 flex items-center justify-between shadow-xl shadow-slate-200/50 relative overflow-hidden">
+<div class="flex items-center space-x-6 relative z-10">
+<div class="h-20 w-20 rounded-2xl overflow-hidden ring-4 ring-blue-50 shadow-inner">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="professional male portrait with a friendly smile, studio lighting, clean white background, high quality photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8BR5fSwb6yhNPK00DZTmNYWec3zKaH3MIeB0vFLSGZWAl8630dpyRcMt-tYa_-SiqdrvmzzKnvMVG_1nYXdjzHPemrnRyLVo-8g7pZaul_nfhrTpsFRYDU-73UL20cgcLj464zS8SGFz3ofMwlsmOqOKW3LlBE_2qOPQQGYmvqBm8mbOEVLPgYqOvu8hXzb8bo6gGr5l8Y_eX5ahpx7G2MXfNKMGP-AeXuZjzokS9VN7Iy4JJzx12XcAQijzQqOfXXho93KcMF8R-"/>
+</div>
+<div>
+<h1 class="text-2xl font-extrabold text-on-surface tracking-tight">Alexander Wright</h1>
+<p class="text-secondary text-sm font-medium flex items-center mt-1">
+<span class="material-symbols-outlined text-[16px] mr-1" data-icon="verified">verified</span>
+                            Member since 2024
+                        </p>
+</div>
+</div>
+<div class="hidden lg:flex items-center space-x-4">
+<div class="text-right">
+<p class="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Orders</p>
+<p class="text-2xl font-black text-on-surface">24</p>
+</div>
+<div class="h-10 w-[1px] bg-slate-100"></div>
+<div class="text-right">
+<p class="text-slate-400 text-xs font-bold uppercase tracking-wider">Points</p>
+<p class="text-2xl font-black text-primary">1,250</p>
+</div>
+</div>
+<div class="absolute -right-12 -top-12 h-40 w-40 bg-blue-50/30 rounded-full blur-3xl"></div>
+</header>
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-on-surface tracking-tight">Recent Orders</h3>
+<div class="flex items-center bg-surface-container-low px-4 py-2 rounded-full space-x-2">
+<span class="material-symbols-outlined text-slate-400 text-[18px]" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-slate-600 w-32 md:w-64 placeholder:text-slate-400" placeholder="Search orders..." type="text"/>
+</div>
+</div>
+<div class="bg-white rounded-2xl overflow-hidden shadow-xl shadow-slate-200/50">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50/50 border-b border-slate-50">
+<tr>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Order ID</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Date</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Product</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr class="hover:bg-slate-50/30 transition-colors">
+<td class="px-6 py-5">
+<span class="font-mono text-sm text-slate-600">#CI-90421</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm text-slate-500">Oct 12, 2024</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-3">
+<div class="h-10 w-10 bg-slate-100 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400" data-icon="videocam">videocam</span>
+</div>
+<span class="text-sm font-semibold text-slate-700">Sentinel X1 Camera</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-fixed text-on-primary-fixed-variant">
+                                            SHIPPED
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-primary text-xs font-bold hover:underline">View Details</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/30 transition-colors">
+<td class="px-6 py-5">
+<span class="font-mono text-sm text-slate-600">#CI-90388</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm text-slate-500">Oct 05, 2024</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-3">
+<div class="h-10 w-10 bg-slate-100 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400" data-icon="router">router</span>
+</div>
+<span class="text-sm font-semibold text-slate-700">Cloud Hub Pro 2</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-surface-container-high text-slate-600">
+                                            DELIVERED
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-primary text-xs font-bold hover:underline">View Details</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/30 transition-colors">
+<td class="px-6 py-5">
+<span class="font-mono text-sm text-slate-600">#CI-90112</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm text-slate-500">Sep 24, 2024</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-3">
+<div class="h-10 w-10 bg-slate-100 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400" data-icon="sensors">sensors</span>
+</div>
+<span class="text-sm font-semibold text-slate-700">Motion Sensor Pack</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-surface-container-high text-slate-600">
+                                            DELIVERED
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-primary text-xs font-bold hover:underline">View Details</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/30 transition-colors">
+<td class="px-6 py-5">
+<span class="font-mono text-sm text-slate-600">#CI-89945</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm text-slate-500">Sep 15, 2024</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-3">
+<div class="h-10 w-10 bg-slate-100 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400" data-icon="lock">lock</span>
+</div>
+<span class="text-sm font-semibold text-slate-700">Smart Bio-Lock V4</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-tertiary-fixed text-on-tertiary-fixed-variant">
+                                            CANCELLED
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-primary text-xs font-bold hover:underline">View Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+</div>
+<footer class="bg-slate-50 w-full mt-auto">
+<div class="py-12 px-8 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="text-sm font-bold text-slate-900 mb-4 uppercase tracking-widest">Cloud Infotech</div>
+<p class="text-slate-500 text-xs leading-relaxed max-w-xs">Elevating security through intelligence. Our precision surveillance and cloud-integrated solutions define the standard for modern protection.</p>
+</div>
+<div class="flex flex-col space-y-3">
+<span class="text-xs font-bold text-slate-900 uppercase tracking-widest">Legal</span>
+<a class="text-slate-500 text-xs font-inter uppercase tracking-widest hover:underline decoration-blue-500" href="#">Privacy Policy</a>
+<a class="text-slate-500 text-xs font-inter uppercase tracking-widest hover:underline decoration-blue-500" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col space-y-3">
+<span class="text-xs font-bold text-slate-900 uppercase tracking-widest">Trust</span>
+<a class="text-slate-500 text-xs font-inter uppercase tracking-widest hover:underline decoration-blue-500" href="#">Security Certification</a>
+<a class="text-slate-500 text-xs font-inter uppercase tracking-widest hover:underline decoration-blue-500" href="#">Ethics Report</a>
+</div>
+<div class="flex flex-col space-y-3">
+<span class="text-xs font-bold text-slate-900 uppercase tracking-widest">Support</span>
+<a class="text-slate-500 text-xs font-inter uppercase tracking-widest hover:underline decoration-blue-500" href="#">Contact Us</a>
+<a class="text-slate-500 text-xs font-inter uppercase tracking-widest hover:underline decoration-blue-500" href="#">Help Center</a>
+</div>
+</div>
+<div class="border-t border-slate-200/50 py-6 px-8 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-slate-400 text-[10px] font-inter uppercase tracking-[0.2em]">
+<p>© 2024 Cloud Infotech Pte. Ltd. All rights reserved.</p>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<span class="material-symbols-outlined text-sm" data-icon="public">public</span>
+<span class="material-symbols-outlined text-sm" data-icon="shield">shield</span>
+<span class="material-symbols-outlined text-sm" data-icon="lock_open">lock_open</span>
+</div>
+</div>
+</footer>
+</body></html>
