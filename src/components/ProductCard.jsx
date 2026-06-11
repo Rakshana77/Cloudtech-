@@ -1,47 +1,113 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import { Star, ShoppingCart, Info, PhoneCall } from 'lucide-react';
 
-const ProductCard = ({ product, onAddToCart }) => {
-    return (
-        <div className="group relative flex flex-col bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1">
-            <Link to={`/product/${product.id}`} className="relative h-64 overflow-hidden bg-surface-container-low block">
-                <img alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={product.image || "https://images.unsplash.com/photo-1558882224-dda166733046?auto=format&fit=crop&q=80&w=600"} />
-                <div className="absolute top-4 right-4 flex flex-col gap-2">
-                    <button className="bg-white/80 backdrop-blur text-on-surface p-2 rounded-full shadow-sm hover:bg-white hover:text-primary transition-colors" onClick={(e) => { e.preventDefault(); }}>
-                        <span className="material-symbols-outlined text-xl">favorite</span>
-                    </button>
-                </div>
-                {product.isNew && (
-                    <div className="absolute bottom-4 left-4">
-                        <span className="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">New Arrival</span>
-                    </div>
-                )}
-            </Link>
-            <div className="p-6 flex flex-col flex-1">
-                <div className="flex justify-between items-start mb-2">
-                    <Link to={`/product/${product.id}`}>
-                        <h2 className="font-headline font-bold text-lg text-on-surface leading-tight hover:text-primary transition-colors">{product.name}</h2>
-                    </Link>
-                    <div className="flex items-center text-primary">
-                        <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                        <span className="text-xs font-bold ml-1">{product.rating || '4.9'}</span>
-                    </div>
-                </div>
-                <p className="text-xs text-on-surface-variant font-medium mb-4">{product.description || 'Professional Surveillance Gear'}</p>
-                <div className="mt-auto flex items-center justify-between">
-                    <div className="flex flex-col">
-                        <span className="text-2xl font-black text-on-surface leading-none">${product.price.toFixed(2)}</span>
-                        {product.originalPrice && <span className="text-xs text-error font-semibold line-through decoration-error/30 mt-1">${product.originalPrice.toFixed(2)}</span>}
-                    </div>
-                    <button
-                        onClick={() => onAddToCart(product)}
-                        className="bg-gradient-to-br from-primary to-primary-container text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md active:scale-95 transition-transform hover:opacity-90">
-                        Quick Add
-                    </button>
-                </div>
+const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
+
+  const discount = product.offerPrice > 0 ? Math.round(((product.price - product.offerPrice) / product.price) * 100) : 0;
+
+  return (
+    <div className="group relative flex flex-col bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+      <Link to={`/product/${product.id}`} className="relative h-56 overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center p-4">
+        <img 
+          alt={product.productName} 
+          className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500" 
+          src={product.image || "https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=200"} 
+        />
+        
+        {discount > 0 && (
+          <div className="absolute top-3 left-3 bg-red-600 text-white text-[9px] font-extrabold px-2 py-0.5 rounded shadow">
+            -{discount}% OFF
+          </div>
+        )}
+
+        {product.featured && (
+          <div className="absolute top-3 right-3 bg-blue-600 text-white text-[9px] font-extrabold px-2 py-0.5 rounded shadow">
+            FEATURED
+          </div>
+        )}
+      </Link>
+
+      <div className="p-5 flex flex-col flex-1 justify-between space-y-4">
+        <div className="space-y-1">
+          <div className="flex justify-between items-start gap-2">
+            <span className="text-[10px] text-blue-600 font-extrabold uppercase tracking-wider">
+              {product.brand}
+            </span>
+            <div className="flex items-center text-amber-500 text-xs">
+              <Star className="w-3.5 h-3.5 fill-current" />
+              <span className="font-bold ml-1 text-slate-600">4.9</span>
             </div>
+          </div>
+          
+          <Link to={`/product/${product.id}`} className="block">
+            <h3 className="font-bold text-slate-800 text-sm leading-tight hover:text-blue-600 transition-colors line-clamp-2">
+              {product.productName}
+            </h3>
+          </Link>
+          <span className="text-[10px] text-slate-400 font-mono block">SKU: {product.sku}</span>
         </div>
-    );
+
+        {/* Stock status conditions */}
+        <div className="space-y-3 pt-3 border-t border-slate-100">
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col">
+              {product.offerPrice > 0 ? (
+                <>
+                  <span className="text-base font-extrabold text-blue-600">${product.offerPrice.toFixed(2)}</span>
+                  <span className="text-[10px] text-slate-400 line-through">${product.price.toFixed(2)}</span>
+                </>
+              ) : (
+                <span className="text-base font-extrabold text-slate-800">${product.price.toFixed(2)}</span>
+              )}
+            </div>
+
+            {/* Badge details */}
+            {product.status === 'inactive' ? (
+              <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">
+                Unavailable
+              </span>
+            ) : product.stockQuantity > 0 ? (
+              <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-600 border border-emerald-100">
+                In Stock
+              </span>
+            ) : (
+              <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-50 text-red-600 border border-red-100">
+                Out Of Stock
+              </span>
+            )}
+          </div>
+
+          {/* Action buttons */}
+          <div className="space-y-2">
+            {/* Get Quote on WhatsApp Button */}
+            <a
+              href={`https://wa.me/6581234567?text=${encodeURIComponent(
+                `Hello Cloud Info Tech,\n\nI am interested in:\n\n${product.productName}\n\nPlease share:\n\n* Pricing\n* Installation charges\n* Warranty details\n\nThank you.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition-colors space-x-1.5 shadow-sm"
+            >
+              <PhoneCall className="w-3.5 h-3.5" />
+              <span>Get Quote on WhatsApp</span>
+            </a>
+
+            {/* Quick View Button */}
+            <Link
+              to={`/product/${product.id}`}
+              className="w-full flex items-center justify-center py-2 border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-lg transition-colors bg-white"
+            >
+              <span>Quick View</span>
+            </Link>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ProductCard;

@@ -1,5 +1,11 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
+import { MessageCircle } from 'lucide-react';
+
+
+// Public components & pages
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -7,58 +13,77 @@ import ProductListing from './pages/ProductListing';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
-import OrderTracking from './pages/OrderTracking';
-import Dashboard from './pages/Dashboard';
+import RequestQuote from './pages/RequestQuote';
+import Contact from './pages/Contact';
+
+// Admin portal components
+import Login from './admin/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminLayout from './admin/AdminLayout';
+import AdminDashboard from './admin/AdminDashboard';
+import AdminProducts from './admin/AdminProducts';
+import AdminCategories from './admin/AdminCategories';
+import AdminBrands from './admin/AdminBrands';
+import AdminQuotations from './admin/AdminQuotations';
 
 function App() {
-  const [cart, setCart] = useState([]);
-
-  const handleAddToCart = (product, qty = 1) => {
-    setCart((prev) => {
-      const existing = prev.find(item => item.id === product.id);
-      if (existing) {
-        return prev.map(item => item.id === product.id ? { ...item, quantity: item.quantity + qty } : item);
-      }
-      return [...prev, { ...product, quantity: qty }];
-    });
-  };
-
-  const updateQuantity = (id, newQty) => {
-    setCart((prev) => prev.map(item => item.id === id ? { ...item, quantity: newQty } : item));
-  };
-
-  const removeItem = (id) => {
-    setCart((prev) => prev.filter(item => item.id !== id));
-  };
-
-  const placeOrder = () => {
-    setCart([]);
-  };
-
-  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
-        <Navbar cartCount={cartCount} />
-        <main className="flex-1">
+    <AuthProvider>
+      <CartProvider>
+        <Router>
           <Routes>
-            <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
-            <Route path="/products" element={<ProductListing onAddToCart={handleAddToCart} />} />
-            <Route path="/product/:id" element={<ProductDetails onAddToCart={handleAddToCart} />} />
-            <Route path="/cart" element={<Cart cart={cart} updateQuantity={updateQuantity} removeItem={removeItem} />} />
-            <Route path="/checkout" element={<Checkout cart={cart} placeOrder={placeOrder} />} />
-            <Route path="/order-tracking" element={<OrderTracking />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            {/* Fallback routes */}
-            <Route path="/solutions" element={<div className="p-20 text-center">Solutions Page (Coming Soon)</div>} />
-            <Route path="/support" element={<div className="p-20 text-center">Support Page (Coming Soon)</div>} />
-            <Route path="/about" element={<div className="p-20 text-center">About Page (Coming Soon)</div>} />
+            {/* Admin Routes with distinct layout */}
+            <Route path="/admin/login" element={<Login />} />
+            
+            <Route path="/admin" element={
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
+            }>
+              <Route index element={<Navigate to="/admin/dashboard" replace />} />
+              <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="products" element={<AdminProducts />} />
+              <Route path="categories" element={<AdminCategories />} />
+              <Route path="brands" element={<AdminBrands />} />
+              <Route path="quotations" element={<AdminQuotations />} />
+            </Route>
+
+            {/* Public Layout and Routes */}
+            <Route path="/*" element={
+              <div className="flex flex-col min-h-screen bg-slate-50 text-slate-800">
+                <Navbar />
+                <main className="flex-grow">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/products" element={<ProductListing />} />
+                    <Route path="/product/:id" element={<ProductDetails />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/request-quote" element={<RequestQuote />} />
+                    <Route path="/contact" element={<Contact />} />
+                    
+                    {/* Fallback */}
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </main>
+                <Footer />
+                {/* Floating WhatsApp button */}
+                <a 
+                  href="https://wa.me/6581234567"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="fixed bottom-8 right-8 z-50 bg-[#1453E3] hover:bg-[#1453E3]/90 text-white p-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all animate-bounce"
+                  aria-label="Contact sales desk on WhatsApp"
+                >
+                  <MessageCircle className="w-6 h-6" />
+                </a>
+              </div>
+            } />
           </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

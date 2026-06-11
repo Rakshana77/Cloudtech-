@@ -1,210 +1,415 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { products } from '../data/products';
+import { productService } from '../services/productService';
+import { brandService } from '../services/brandService';
+import { 
+  ArrowRight, 
+  ShieldCheck, 
+  Camera, 
+  Shield, 
+  Wrench, 
+  DoorOpen, 
+  Network, 
+  ClipboardList, 
+  Star 
+} from 'lucide-react';
 
 const Home = () => {
-    return (
-        <main className="pt-16 text-on-surface bg-surface">
-            {/* Hero Section */}
-            <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white">
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent z-10"></div>
-                    <img alt="Modern Smart Home" className="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu97QIKtZA7PFakrIw0pbnYIedT6mW_OeMRnPsjWInA8ys_7316ZFoid47yWqzdrkdBzoZ9ohbMQtLg0klrOcweo-weWQeu9ONUzxKl5RZ7XOxYA6zIIpzDhVsGpoIGYig6Zb-POxtdo9N6UGvsXjKgm0nJrFeqCD6uPn0o7VBrr88BgSNlTop7KudxohDdVYKCvTPYtxj0fEgHcN4Te5IJ7dt5dlvZTaSYO-LeAc65fB-QdnSEd_xOSVZC_Hg_eK0UtKQMGW5aCLA" />
-                </div>
-                <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-20">
-                    <div>
-                        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-8 border border-primary/20">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                            </span>
-                            Trust is Our Foundation
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [brands, setBrands] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const [prods, brnds] = await Promise.all([
+          productService.getProducts(),
+          brandService.getBrands()
+        ]);
+        
+        setFeaturedProducts(prods.filter(p => p.featured === true || p.status === 'active').slice(0, 4));
+        setBrands(brnds.filter(b => b.status === 'active').slice(0, 8));
+      } catch (error) {
+        console.error('Error fetching home statistics:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
+
+  return (
+    <main className="text-[#111827] bg-[#F6F8FB] font-sans min-h-screen pb-16">
+      
+      {/* Hero Section */}
+      <section className="max-w-[1280px] mx-auto px-6 py-16 flex flex-col lg:flex-row items-center gap-12">
+        {/* Left Side (45%) */}
+        <div className="w-full lg:w-[45%] space-y-8 text-left">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#1453E3]/10 text-[#1453E3] text-xs font-bold tracking-widest uppercase border border-[#1453E3]/20">
+            TRUST IS OUR FOUNDATION
+          </span>
+          <h1 className="text-5xl sm:text-6xl lg:text-[72px] font-extrabold leading-[1.05] tracking-tight text-[#111827]">
+            Your Safety is <br />
+            Our <br />
+            <span className="text-[#1453E3]">Top Priority</span>
+          </h1>
+          <p className="text-base sm:text-lg text-[#475569] leading-relaxed">
+            Stop worrying about blind spots. Our AI-driven surveillance provides 24/7 crystal-clear protection for your family and assets, anywhere in the world.
+          </p>
+          <div className="flex flex-wrap gap-4 pt-2">
+            <Link 
+              to="/products" 
+              className="bg-[#1453E3] hover:bg-[#1453E3]/90 text-white px-8 py-4 rounded-xl font-bold text-sm shadow-lg shadow-[#1453E3]/20 transition-all"
+            >
+              Shop Now
+            </Link>
+            <Link 
+              to="/request-quote" 
+              className="bg-white text-[#475569] px-8 py-4 rounded-xl font-bold text-sm border border-[#E5E7EB] hover:bg-slate-50 transition-all"
+            >
+              Get Free Quote
+            </Link>
+          </div>
+        </div>
+
+        {/* Right Side (55% container) */}
+        <div className="w-full lg:w-[55%]">
+          <div className="relative rounded-[40px] overflow-hidden flex items-center justify-center min-h-[480px] shadow-2xl bg-gradient-to-br from-[#0B1726] via-[#102B3A] to-[#152B36]">
+            {/* Glow center effect */}
+            <div className="absolute w-80 h-80 rounded-full bg-blue-500/10 blur-[80px]" />
+            <img 
+              alt="Premium CCTV Product Showcase" 
+              className="absolute inset-0 w-full h-full object-cover z-10 drop-shadow-[0_20px_50px_rgba(20,83,227,0.3)]" 
+              src="/hero-camera.png" 
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Explore Solutions Section */}
+      <section className="max-w-[1280px] mx-auto px-6 py-20">
+        <div className="flex flex-col items-center mb-16 text-center">
+          <h2 className="text-3xl font-extrabold tracking-tight text-[#111827] pb-4 relative">
+            Explore Solutions
+            <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-[#1453E3] rounded-full" />
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          {/* Large Feature Card Left */}
+          <Link 
+            to="/products"
+            className="rounded-[32px] overflow-hidden relative min-h-[400px] flex flex-col justify-end p-10 bg-slate-900 group shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
+            <img 
+              alt="Premium CCTV Product" 
+              className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" 
+              src="/explore-camera.png" 
+            />
+
+            <div className="relative z-20 space-y-4 text-left">
+              <span className="inline-flex p-3 rounded-xl bg-white/10 backdrop-blur-md text-white border border-white/20">
+                <Camera className="w-6 h-6" />
+              </span>
+              <h3 className="text-white text-3xl font-extrabold">Surveillance Systems</h3>
+              <p className="text-white/70 text-sm max-w-sm">4K Ultra HD AI cameras designed for maximum coverage layouts.</p>
+            </div>
+          </Link>
+
+          {/* Right Side Stacked Cards */}
+          <div className="flex flex-col gap-8">
+            {/* Card 1 */}
+            <Link 
+              to="/products"
+              className="bg-white p-8 rounded-[32px] border border-[#E5E7EB] shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between h-1/2"
+            >
+              <div>
+                <span className="inline-flex p-3 rounded-xl bg-[#1453E3]/5 text-[#1453E3] mb-4">
+                  <Shield className="w-6 h-6" />
+                </span>
+                <h3 className="text-lg font-bold text-[#111827]">DVR/NVR Hubs</h3>
+                <p className="text-[#475569] text-sm mt-1.5">Massive storage solutions for multi-channel recording.</p>
+              </div>
+            </Link>
+
+            {/* Card 2 */}
+            <Link 
+              to="/products"
+              className="bg-white p-8 rounded-[32px] border border-[#E5E7EB] shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between h-1/2"
+            >
+              <div>
+                <span className="inline-flex p-3 rounded-xl bg-[#1453E3]/5 text-[#1453E3] mb-4">
+                  <Wrench className="w-6 h-6" />
+                </span>
+                <h3 className="text-lg font-bold text-[#111827]">Essential Parts</h3>
+                <p className="text-[#475569] text-sm mt-1.5">High-performance cables, mounts, and power supplies.</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Security Gear */}
+      <section className="max-w-[1280px] mx-auto px-6 py-16 space-y-10">
+        <div className="flex justify-between items-end border-b border-[#E5E7EB] pb-6">
+          <div>
+            <h2 className="text-3xl font-extrabold tracking-tight text-[#111827]">Popular Security Gear</h2>
+            <p className="text-[#475569] text-sm mt-1">Hardware trusted by thousands of businesses and homeowners.</p>
+          </div>
+          <Link to="/products" className="text-[#1453E3] font-bold text-sm flex items-center gap-1 hover:underline">
+            Full Catalog <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {loading ? (
+            Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="animate-pulse bg-white border h-[500px] rounded-[28px]"></div>
+            ))
+          ) : featuredProducts.length === 0 ? (
+            <div className="col-span-full text-center text-xs text-slate-400 py-10">
+              No products found. Add products in the admin panel.
+            </div>
+          ) : (
+            featuredProducts.map(product => {
+              const currentPrice = product.offerPrice > 0 ? product.offerPrice : product.price;
+              const discount = product.offerPrice > 0 ? Math.round(((product.price - product.offerPrice) / product.price) * 100) : 0;
+              return (
+                <div 
+                  key={product.id} 
+                  className="bg-white border border-[#E5E7EB] rounded-[28px] h-[500px] flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1.5 group p-5"
+                >
+                  {/* Top Image area (65% height equivalent) */}
+                  <Link to={`/product/${product.id}`} className="relative h-[280px] bg-slate-50 border border-slate-100 rounded-[20px] flex items-center justify-center p-4 overflow-hidden">
+                    <img 
+                      alt={product.productName} 
+                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500" 
+                      src={product.image || 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?q=80&w=200'} 
+                    />
+                    {/* Badges */}
+                    <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+                      {discount > 0 && (
+                        <span className="bg-[#1453E3] text-white text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                          SALE
                         </span>
-                        <h1 className="text-5xl lg:text-7xl font-extrabold font-headline leading-[1.1] mb-8">
-                            Your Safety is Our <br /><span className="text-primary">Top Priority</span>
-                        </h1>
-                        <p className="text-xl text-on-surface-variant mb-12 max-w-xl leading-relaxed font-medium">
-                            Stop worrying about blind spots. Our AI-driven surveillance provides 24/7 crystal-clear protection for your family and assets, anywhere in the world.
-                        </p>
-                        <div className="flex flex-wrap gap-5">
-                            <Link to="/products" className="primary-gradient text-white px-10 py-5 rounded-xl font-bold text-lg shadow-2xl shadow-primary/30 hover:shadow-primary/40 hover:-translate-y-1 hover:primary-gradient-hover transition-all active:scale-95 flex items-center gap-2">
-                                Shop Now <span className="material-symbols-outlined">arrow_forward</span>
-                            </Link>
-                            <button className="bg-surface-container-low text-on-surface px-10 py-5 rounded-xl font-bold text-lg border border-slate-200 hover:bg-white hover:shadow-lg transition-all active:scale-95">
-                                Get Free Quote
-                            </button>
-                        </div>
+                      )}
+                      {product.featured && (
+                        <span className="bg-slate-900 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                          NEW ARRIVAL
+                        </span>
+                      )}
                     </div>
-                    <div className="hidden lg:block relative">
-                        <div className="relative z-10 p-4 bg-white/30 backdrop-blur-md rounded-[2.5rem] ghost-border shadow-2xl">
-                            <img alt="Professional Security Hardware" className="w-full h-auto rounded-[2rem] shadow-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwVv9kMhtGwDS0UvvCRvtOPq7sdRKY6Ym4aC8T8jt9z8WdbAHk1ly3dD0Spk0B1VVUggUw-f7qCkcmEj5CogwRRv1Xqt7zYRA2V5VDz-Pn9evY54_itSOsAvodSul_LVoa6a-hM0-qqvE9_CVfP0Ys_BlIFc9ykEhheY1N3aYq-4V1gTJFYkNfAOgoR_yXRwOwAmRfzGfrUZuxBKXSRWSakMGH3_EEkqwOzx5juDOzSOPG6yvfCxHBcYPJLgjVoOzeEmhnTonghBu9" />
-                        </div>
-                        <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary/10 rounded-full blur-3xl -z-10"></div>
-                        <div className="absolute -top-6 -left-6 w-48 h-48 bg-blue-400/10 rounded-full blur-3xl -z-10"></div>
+                  </Link>
+
+                  {/* Text meta */}
+                  <div className="space-y-3 pt-2 text-left">
+                    <div className="flex justify-between items-center text-[10px] text-[#475569] font-bold uppercase tracking-wider">
+                      <span>{product.brand}</span>
+                      <div className="flex items-center text-amber-500 font-bold">
+                        <Star className="w-3.5 h-3.5 fill-current mr-0.5" />
+                        <span>4.9</span>
+                      </div>
                     </div>
-                </div>
-            </section>
+                    
+                    <Link to={`/product/${product.id}`} className="block">
+                      <h4 className="font-bold text-[#111827] text-sm leading-tight hover:text-[#1453E3] transition-colors line-clamp-2">
+                        {product.productName}
+                      </h4>
+                    </Link>
+                    <span className="text-[10px] text-slate-400 font-mono block">SKU: {product.sku}</span>
+                  </div>
 
-            {/* Unified Trust Bar */}
-            <section className="py-12 bg-surface-container-low border-y border-slate-100">
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {['verified_user', 'support_agent', 'build_circle'].map((icon, i) => (
-                        <div key={i} className="flex items-center space-x-5 group">
-                            <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-                                <span className="material-symbols-outlined text-3xl">{icon}</span>
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-lg text-on-surface">
-                                    {i === 0 ? '2-Year Warranty' : i === 1 ? '24/7 Expert Support' : 'Pro Installation'}
-                                </h4>
-                                <p className="text-on-surface-variant text-sm">
-                                    {i === 0 ? 'Full replacement guarantee' : i === 1 ? 'Assistance anytime you need' : 'Certified tech deployment'}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Categories Section */}
-            <section className="py-32 px-6 max-w-7xl mx-auto">
-                <div className="flex flex-col items-center mb-16 text-center">
-                    <h2 className="text-4xl font-extrabold font-headline mb-4">Explore Solutions</h2>
-                    <div className="h-1.5 w-20 bg-primary rounded-full"></div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <Link to="/products" className="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-3xl bg-slate-900 aspect-square md:aspect-auto shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer block">
-                        <img alt="Smart Cameras" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsWgS9ZLaf5z7-h7yBm9-otgLSw2loMeT-dr6Jn95YhfEMgQXeeColngTnWjzgEt9_f_3oYDZKsszW4fYjrIMPIptUNa1leGmTo5UJUiupInLCGitBwl3ii3ZBlWuAzsDDl3uXzdlVvfNXztHKV8BIdSLIDD227bRJAr4dZAiJUkEy9GG_49mbBQ74xD-MyRUPN6ejRv6vHovIH9O2CIUJQ6P6jAjf2NpR-L6GgHp5Wlikf5Id9KRkCx8KKik0gFtZY0bGiVEC3374" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-10 flex flex-col justify-end">
-                            <div className="mb-4 w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
-                                <span className="material-symbols-outlined text-3xl">videocam</span>
-                            </div>
-                            <h3 className="text-white text-3xl font-extrabold mb-3">Surveillance Cameras</h3>
-                            <p className="text-white/70 text-base max-w-xs leading-relaxed">4K Ultra HD resolution with AI-powered movement tracking and face recognition.</p>
-                        </div>
-                        <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white">
-                                <span className="material-symbols-outlined">arrow_outward</span>
-                            </div>
-                        </div>
-                    </Link>
-                    <Link to="/products" className="group relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-slate-100 h-80 shadow-sm hover:shadow-2xl hover:border-primary/20 transition-all duration-500 cursor-pointer block">
-                        <div className="p-8">
-                            <div className="mb-6 w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                                <span className="material-symbols-outlined text-3xl">storage</span>
-                            </div>
-                            <h3 className="text-on-surface text-xl font-bold mb-2">DVR/NVR Hubs</h3>
-                            <p className="text-on-surface-variant text-sm">Massive storage solutions for multi-channel recording.</p>
-                        </div>
-                    </Link>
-                    <Link to="/products" className="group relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-slate-100 h-80 shadow-sm hover:shadow-2xl hover:border-primary/20 transition-all duration-500 cursor-pointer block">
-                        <div className="p-8">
-                            <div className="mb-6 w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                                <span className="material-symbols-outlined text-3xl">settings_input_component</span>
-                            </div>
-                            <h3 className="text-on-surface text-xl font-bold mb-2">Essential Parts</h3>
-                            <p className="text-on-surface-variant text-sm">High-performance cables, mounts, and power supplies.</p>
-                        </div>
-                    </Link>
-                    <Link to="/solutions" className="md:col-span-2 group relative overflow-hidden rounded-3xl bg-slate-100 h-80 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer block">
-                        <img alt="Installation Kits" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlEbtbuge2vaVtCdm8Nx5F44DjsOESTbZVXKukHr9PTiCmeTPS-iosRfB0gl5BtUPV2DOOYJr3ApWaMCNzQo0I8-axuC1zrQpJHTbQw05NEKM9QKVIaQtuRDD8ozh6-ltXSFSRYoN9WojG7NYsZrglwCurb5zYvjE_MlkOqOSyrqzCxExX4C2F1OdhqOHJgZPoRNvzie1XEdAiw8KkoVQz-GIYlugXT3G_svEz90pNektmz6q03rWfIHMZGEl1JVUHcq4zC5aFRmck" />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent p-10 flex flex-col justify-center">
-                            <div className="mb-4 w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
-                                <span className="material-symbols-outlined text-3xl">handyman</span>
-                            </div>
-                            <h3 className="text-white text-2xl font-extrabold mb-2">Professional Installation</h3>
-                            <p className="text-white/80 text-sm max-w-xs">Let our certified experts set up your network for peak performance.</p>
-                        </div>
-                    </Link>
-                </div>
-            </section>
-
-            {/* Featured Products */}
-            <section className="py-24 max-w-7xl mx-auto px-6">
-                <div className="flex justify-between items-end mb-16">
-                    <div>
-                        <h2 className="text-4xl font-extrabold font-headline">Popular Security Gear</h2>
-                        <p className="text-on-surface-variant mt-3 text-lg">Hardware trusted by thousands of businesses and homeowners.</p>
+                  {/* Price and Add button */}
+                  <div className="flex items-center justify-between pt-4 border-t border-[#E5E7EB]">
+                    <div className="flex flex-col text-left">
+                      {product.offerPrice > 0 ? (
+                        <>
+                          <span className="text-base font-extrabold text-[#1453E3]">${product.offerPrice.toFixed(2)}</span>
+                          <span className="text-[10px] text-slate-400 line-through">${product.price.toFixed(2)}</span>
+                        </>
+                      ) : (
+                        <span className="text-base font-extrabold text-[#111827]">${product.price.toFixed(2)}</span>
+                      )}
                     </div>
-                    <Link to="/products" className="text-primary font-bold flex items-center hover:gap-3 transition-all">
-                        Full Catalog <span className="material-symbols-outlined ml-1">arrow_forward</span>
+                    
+                    <Link 
+                      to={`/product/${product.id}`} 
+                      className="w-10 h-10 rounded-full bg-[#1453E3] hover:bg-[#1453E3]/90 text-white flex items-center justify-center shadow-md shadow-[#1453E3]/15 transition-all duration-300"
+                    >
+                      <ArrowRight className="w-4 h-4" />
                     </Link>
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                    {products.slice(0, 4).map(product => (
-                        <Link key={product.id} to={`/product/${product.id}`} className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-2xl border border-slate-100 transition-all duration-300 group block">
-                            <div className="relative overflow-hidden rounded-2xl bg-slate-50 mb-6 h-64 skeleton group-hover:bg-none">
-                                <img alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src={product.image} />
-                                {product.isNew && <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-extrabold px-3 py-1.5 rounded-lg uppercase tracking-wider shadow-lg">New Arrival</div>}
-                                {product.originalPrice && <div className="absolute top-4 left-4 bg-tertiary text-white text-[10px] font-extrabold px-3 py-1.5 rounded-lg uppercase tracking-wider shadow-lg">Sale</div>}
-                            </div>
-                            <h3 className="font-bold text-on-surface text-lg mb-1">{product.name}</h3>
-                            <p className="text-on-surface-variant text-xs mb-6 truncate">{product.description}</p>
-                            <div className="flex items-center justify-between border-t border-slate-50 pt-5">
-                                <span className="text-2xl font-extrabold text-slate-900">${product.price.toFixed(2)}</span>
-                                <button className="w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center hover:bg-primary-container hover:-translate-y-1 transition-all active:scale-90 shadow-lg shadow-primary/20">
-                                    <span className="material-symbols-outlined text-2xl">add_shopping_cart</span>
-                                </button>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
+              );
+            })
+          )}
+        </div>
+      </section>
 
-            {/* Testimonials */}
-            <section className="py-32 bg-slate-900 text-white overflow-hidden relative">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
-                <div className="max-w-7xl mx-auto px-6 relative z-10">
-                    <div className="text-center mb-20">
-                        <h2 className="text-4xl md:text-5xl font-extrabold font-headline mb-6">Built on Trusted Stories</h2>
-                        <p className="text-slate-400 text-lg max-w-2xl mx-auto">We protect what matters most. See why thousands of customers choose Cloud Infotech for their security needs.</p>
-                    </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                        <div className="bg-white/5 backdrop-blur-xl p-12 rounded-[2.5rem] border border-white/10 hover:border-primary/50 transition-colors group">
-                            <div className="flex items-center gap-1 text-primary mb-8">
-                                {[...Array(5)].map((_, i) => <span key={i} className="material-symbols-outlined fill-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>)}
-                            </div>
-                            <p className="text-xl italic text-slate-300 mb-10 leading-[1.8] font-medium">"The installation was seamless. Cloud Infotech provided a comprehensive security assessment that revealed blind spots we hadn't even considered. Our warehouse is now fully secured with no compromises."</p>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center space-x-5">
-                                    <div className="w-16 h-16 rounded-2xl overflow-hidden ring-2 ring-primary/20">
-                                        <img alt="Marcus Chen" className="w-full h-full object-cover bg-gray-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN-RiJzqw9WPo-BSS70wVezA-OGyScd4fCmrVVVsffBkJ67O8vH43DOrI0CAhxpmOBkrhzSDfHAyRBGxs-gho4nWNG9CjxDjQwxGeSgSGtk4bmylf600kXlqD5UIEYkYC4DcaVOylYUeflpGDu0z1vlBYV6YXfLrm0OQfK95q8Q_YOQdcqYFb6RqTzl-ruC0AXizBwWnJadfaP6fl9WHtmI16BnhR16Lgv9jie4i7zfZW-zXrd_EFALKiNxt3gBhpxS6f7ygb_l9wa" />
-                                    </div>
-                                    <div>
-                                        <h5 className="font-extrabold text-lg">Marcus Chen</h5>
-                                        <p className="text-sm text-slate-500">Director, Logistics Hub</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+      {/* Services Section */}
+      <section className="max-w-[1280px] mx-auto px-6 py-20 space-y-12">
+        <div className="text-center space-y-3">
+          <span className="text-[10px] font-extrabold text-[#1453E3] uppercase tracking-widest block">WHAT WE DO</span>
+          <h2 className="text-3xl font-extrabold text-[#111827] tracking-tight">Security Solutions & Installation Services</h2>
+          <p className="text-[#475569] text-sm max-w-2xl mx-auto font-medium">
+            Professional security infrastructure designed, deployed, and maintained by experts.
+          </p>
+        </div>
 
-                        <div className="bg-white/5 backdrop-blur-xl p-12 rounded-[2.5rem] border border-white/10 hover:border-primary/50 transition-colors group">
-                            <div className="flex items-center gap-1 text-primary mb-8">
-                                {[...Array(5)].map((_, i) => <span key={i} className="material-symbols-outlined fill-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>)}
-                            </div>
-                            <p className="text-xl italic text-slate-300 mb-10 leading-[1.8] font-medium">"The 4K resolution is mind-blowing. Being able to check live feeds from my phone with zero lag gives me absolute peace of mind while traveling. I feel safe knowing my home is guarded."</p>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center space-x-5">
-                                    <div className="w-16 h-16 rounded-2xl overflow-hidden ring-2 ring-primary/20">
-                                        <img alt="Sarah Jenkins" className="w-full h-full object-cover bg-gray-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZtbQBL8xx-X-D2lwPGn1XHd4UdiRgfEf6Zed_5VTcxw6AmB94QJrCE4yNZ-Mp-zinB7ofLMdDHfoHEGlAqGKcOSsrnHAQx2ZFYNoKC7PCvfhm4xsCZcsMZ2OeivqQur14Kpm1QrrrG0YJGfuFpUsubvewENH5I8dm2iVFLKG1IRrL9j58e8Elr7XHyZAy2vVEVz90eWszx5P2OMTdXwPVQ9bwWtLtbzbnvy_x5Teql-Obzcs0UYilRXpGcSBa7YPa4yOVQnA83r9N" />
-                                    </div>
-                                    <div>
-                                        <h5 className="font-extrabold text-lg">Sarah Jenkins</h5>
-                                        <p className="text-sm text-slate-500">Home Owner</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* CCTV Installation */}
+          <div className="bg-white p-8 rounded-3xl border border-[#E5E7EB] shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col justify-between text-left">
+            <div className="space-y-4">
+              <span className="inline-flex p-3.5 rounded-2xl bg-[#1453E3]/5 text-[#1453E3] group-hover:bg-[#1453E3] group-hover:text-white transition-colors duration-300">
+                <Camera className="w-6 h-6" />
+              </span>
+              <h3 className="text-lg font-bold text-[#111827]">CCTV Installation</h3>
+              <p className="text-[#475569] text-xs leading-relaxed">
+                Professional installation of IP cameras, dome cameras, bullet cameras, PTZ cameras, NVR and DVR systems with complete configuration and testing.
+              </p>
+            </div>
+            <a 
+              href="https://wa.me/6581234567" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="mt-6 inline-flex items-center text-xs font-bold text-[#1453E3] hover:underline space-x-1"
+            >
+              <span>Enquire via WhatsApp</span>
+              <span>→</span>
+            </a>
+          </div>
 
-            {/* Chat FAB */}
-            <button className="fixed bottom-10 right-10 w-16 h-16 rounded-2xl primary-gradient text-white shadow-[0_20px_50px_rgba(0,75,202,0.3)] flex items-center justify-center hover:scale-110 hover:-rotate-3 active:scale-95 transition-all z-50 group">
-                <span className="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">chat</span>
-            </button>
+          {/* Access Control Systems */}
+          <div className="bg-white p-8 rounded-3xl border border-[#E5E7EB] shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col justify-between text-left">
+            <div className="space-y-4">
+              <span className="inline-flex p-3.5 rounded-2xl bg-[#1453E3]/5 text-[#1453E3] group-hover:bg-[#1453E3] group-hover:text-white transition-colors duration-300">
+                <Shield className="w-6 h-6" />
+              </span>
+              <h3 className="text-lg font-bold text-[#111827]">Access Control Systems</h3>
+              <p className="text-[#475569] text-xs leading-relaxed">
+                Biometric attendance systems, facial recognition devices, RFID access control and visitor management solutions.
+              </p>
+            </div>
+            <a 
+              href="https://wa.me/6581234567" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="mt-6 inline-flex items-center text-xs font-bold text-[#1453E3] hover:underline space-x-1"
+            >
+              <span>Enquire via WhatsApp</span>
+              <span>→</span>
+            </a>
+          </div>
 
-        </main>
-    );
+          {/* Annual Maintenance Contracts */}
+          <div className="bg-white p-8 rounded-3xl border border-[#E5E7EB] shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col justify-between text-left">
+            <div className="space-y-4">
+              <span className="inline-flex p-3.5 rounded-2xl bg-[#1453E3]/5 text-[#1453E3] group-hover:bg-[#1453E3] group-hover:text-white transition-colors duration-300">
+                <Wrench className="w-6 h-6" />
+              </span>
+              <h3 className="text-lg font-bold text-[#111827]">Annual Maintenance Contracts</h3>
+              <p className="text-[#475569] text-xs leading-relaxed">
+                Preventive maintenance, health checks, troubleshooting, firmware updates and system performance optimization.
+              </p>
+            </div>
+            <a 
+              href="https://wa.me/6581234567" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="mt-6 inline-flex items-center text-xs font-bold text-[#1453E3] hover:underline space-x-1"
+            >
+              <span>Enquire via WhatsApp</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          {/* Video Door Phones */}
+          <div className="bg-white p-8 rounded-3xl border border-[#E5E7EB] shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col justify-between text-left">
+            <div className="space-y-4">
+              <span className="inline-flex p-3.5 rounded-2xl bg-[#1453E3]/5 text-[#1453E3] group-hover:bg-[#1453E3] group-hover:text-white transition-colors duration-300">
+                <DoorOpen className="w-6 h-6" />
+              </span>
+              <h3 className="text-lg font-bold text-[#111827]">Video Door Phones</h3>
+              <p className="text-[#475569] text-xs leading-relaxed">
+                Smart video intercom and door phone solutions with remote monitoring and mobile application integration.
+              </p>
+            </div>
+            <a 
+              href="https://wa.me/6581234567" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="mt-6 inline-flex items-center text-xs font-bold text-[#1453E3] hover:underline space-x-1"
+            >
+              <span>Enquire via WhatsApp</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          {/* Networking Infrastructure */}
+          <div className="bg-white p-8 rounded-3xl border border-[#E5E7EB] shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col justify-between text-left">
+            <div className="space-y-4">
+              <span className="inline-flex p-3.5 rounded-2xl bg-[#1453E3]/5 text-[#1453E3] group-hover:bg-[#1453E3] group-hover:text-white transition-colors duration-300">
+                <Network className="w-6 h-6" />
+              </span>
+              <h3 className="text-lg font-bold text-[#111827]">Networking Infrastructure</h3>
+              <p className="text-[#475569] text-xs leading-relaxed">
+                PoE switches, network racks, CAT6 cabling, fiber connectivity and complete surveillance network infrastructure.
+              </p>
+            </div>
+            <a 
+              href="https://wa.me/6581234567" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="mt-6 inline-flex items-center text-xs font-bold text-[#1453E3] hover:underline space-x-1"
+            >
+              <span>Enquire via WhatsApp</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          {/* Security Consultation */}
+          <div className="bg-white p-8 rounded-3xl border border-[#E5E7EB] shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col justify-between text-left">
+            <div className="space-y-4">
+              <span className="inline-flex p-3.5 rounded-2xl bg-[#1453E3]/5 text-[#1453E3] group-hover:bg-[#1453E3] group-hover:text-white transition-colors duration-300">
+                <ClipboardList className="w-6 h-6" />
+              </span>
+              <h3 className="text-lg font-bold text-[#111827]">Security Consultation</h3>
+              <p className="text-[#475569] text-xs leading-relaxed">
+                Free site inspection, security assessment and customized surveillance planning by experienced professionals.
+              </p>
+            </div>
+            <a 
+              href="https://wa.me/6581234567" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="mt-6 inline-flex items-center text-xs font-bold text-[#1453E3] hover:underline space-x-1"
+            >
+              <span>Enquire via WhatsApp</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Brands List */}
+      <section className="max-w-[1280px] mx-auto px-6 py-16 space-y-6">
+        <h3 className="text-lg font-bold text-[#111827] text-left">Distributor Brands</h3>
+        <div className="flex flex-wrap items-center gap-8 opacity-60">
+          {brands.map(b => (
+            <div key={b.id} className="w-24 h-12 flex items-center justify-center p-2 bg-white rounded border border-[#E5E7EB] shadow-sm" title={b.name}>
+              {b.logo ? (
+                <img src={b.logo} alt={b.name} className="max-w-full max-h-full object-contain" />
+              ) : (
+                <span className="text-[10px] text-slate-500 font-bold uppercase">{b.name}</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </main>
+  );
 };
+
 export default Home;
