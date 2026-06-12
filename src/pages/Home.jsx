@@ -33,7 +33,7 @@ const Home = () => {
         ]);
         
         setFeaturedProducts(prods.filter(p => p.featured === true || p.status === 'active').slice(0, 4));
-        setBrands(brnds.filter(b => b.status === 'active').slice(0, 8));
+        setBrands(brnds.filter(b => b.status === 'active'));
       } catch (error) {
         console.error('Error fetching home statistics:', error);
       } finally {
@@ -347,29 +347,67 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Brands We Support Strip */}
-      <section className="w-full bg-gradient-to-r from-[#0F172A] to-[#1453E3] py-16 text-center text-white">
-        <div className="max-w-[1280px] mx-auto px-6 space-y-8">
-          <h3 className="text-lg font-extrabold tracking-wide uppercase">Trusted Brands We Work With</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
-            {[
-              { name: "ASUS", bg: "bg-white text-[#0F172A] border-[#0F172A]" },
-              { name: "DELL", bg: "bg-[#0076CE] text-white border-transparent" },
-              { name: "HP", bg: "bg-[#0096D6] text-white border-transparent" },
-              { name: "LENOVO", bg: "bg-[#E2231A] text-white border-transparent" },
-              { name: "HIKVISION", bg: "bg-[#E11F26] text-white border-transparent" },
-              { name: "DAHUA", bg: "bg-[#E30613] text-white border-transparent" },
-              { name: "CP PLUS", bg: "bg-[#ED1C24] text-white border-transparent" },
-              { name: "ZKTECO", bg: "bg-[#80C01E] text-white border-transparent" }
-            ].map((brand) => (
-              <div 
-                key={brand.name} 
-                className={`py-4 px-3 rounded-xl flex items-center justify-center font-extrabold tracking-wider text-xs sm:text-sm shadow-md transition-transform duration-300 hover:scale-105 border ${brand.bg}`}
-              >
-                {brand.name}
-              </div>
-            ))}
+      {/* Brands available section */}
+      <section className="w-full bg-[#F8FAFC] py-20 text-center border-t border-[#E5E7EB]">
+        <div className="max-w-[1280px] mx-auto px-6 space-y-12">
+          
+          <div className="space-y-3 max-w-[700px] mx-auto">
+            <h3 className="text-3xl font-extrabold tracking-tight text-[#111827]">
+              Technology Brands We Support
+            </h3>
+            <p className="text-[#475569] text-sm md:text-base font-medium">
+              We supply and support products from leading laptop, networking and security manufacturers.
+            </p>
           </div>
+
+          {brands.length === 0 ? (
+            <div className="text-slate-400 text-xs py-8">No brands configured yet.</div>
+          ) : (
+            <>
+              {/* Desktop Infinite Marquee */}
+              <div className="hidden md:block overflow-hidden relative w-full py-4">
+                {/* Gradient Fades for Premium look */}
+                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
+                
+                <div className="animate-marquee-ltr flex gap-8 items-center">
+                  {[...brands, ...brands, ...brands, ...brands].map((brand, idx) => {
+                    const logoSrc = brand.logo || brand.logoUrl;
+                    return (
+                      <div 
+                        key={idx}
+                        className="bg-white border border-[#E5E7EB] rounded-2xl px-7 py-4 flex items-center justify-center gap-3 shrink-0 text-[#111827] hover:border-[#1453E3] hover:text-[#1453E3] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 min-w-[180px] h-[72px]"
+                      >
+                        {logoSrc && (
+                          <img src={logoSrc} alt={brand.name} className="h-7 w-auto object-contain" />
+                        )}
+                        <span className="font-extrabold text-sm tracking-wide">{brand.name}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Mobile swipeable horizontal scroll */}
+              <div className="md:hidden flex overflow-x-auto gap-4 py-4 px-6 scrollbar-none snap-x snap-mandatory">
+                {brands.map((brand, idx) => {
+                  const logoSrc = brand.logo || brand.logoUrl;
+                  return (
+                    <div 
+                      key={idx}
+                      className="snap-center bg-white border border-[#E5E7EB] rounded-2xl px-7 py-4 flex items-center justify-center gap-3 shrink-0 text-[#111827] hover:border-[#1453E3] hover:text-[#1453E3] hover:shadow-xl transition-all duration-300 min-w-[160px] h-[64px]"
+                    >
+                      {logoSrc && (
+                        <img src={logoSrc} alt={brand.name} className="h-6 w-auto object-contain" />
+                      )}
+                      <span className="font-extrabold text-xs tracking-wide">{brand.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
+
         </div>
       </section>
 
