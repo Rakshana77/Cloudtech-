@@ -38,15 +38,110 @@ const AdminDashboard = () => {
     
     const productsToSeed = [
       {
+        productName: "Dell Latitude 5420 Business Laptop",
+        sku: "DL-LAT-5420",
+        brand: "Dell",
+        category: "Business Laptops",
+        price: 1299.00,
+        offerPrice: 1199.00,
+        stockQuantity: 15,
+        status: "active",
+        featured: true,
+        description: "Professional business laptop powered by Intel Core i5 11th Gen with 16GB RAM and 512GB SSD.",
+        specifications: [
+          "CPU: Intel Core i5-1145G7",
+          "RAM: 16GB DDR4",
+          "Storage: 512GB PCIe NVMe SSD",
+          "Display: 14.0\" FHD (1920x1080) Anti-Glare",
+          "OS: Windows 11 Pro"
+        ].join('\n')
+      },
+      {
+        productName: "HP EliteBook 840 G8",
+        sku: "HP-ELT-840G8",
+        brand: "HP",
+        category: "Business Laptops",
+        price: 1499.00,
+        offerPrice: 1399.00,
+        stockQuantity: 12,
+        status: "active",
+        featured: true,
+        description: "Premium enterprise laptop with sleek aluminum chassis, Intel Core i7, and advanced collaboration features.",
+        specifications: [
+          "CPU: Intel Core i7-1165G7",
+          "RAM: 16GB DDR4",
+          "Storage: 512GB PCIe NVMe SSD",
+          "Display: 14\" FHD IPS Anti-Glare",
+          "OS: Windows 11 Pro"
+        ].join('\n')
+      },
+      {
+        productName: "Lenovo ThinkPad T14 Gen 2",
+        sku: "LN-THINK-T14",
+        brand: "Lenovo",
+        category: "Business Laptops",
+        price: 1599.00,
+        offerPrice: 1499.00,
+        stockQuantity: 10,
+        status: "active",
+        featured: true,
+        description: "The gold standard for business productivity and durability with AMD Ryzen 7 PRO processors.",
+        specifications: [
+          "CPU: AMD Ryzen 7 PRO 5850U",
+          "RAM: 16GB DDR4 (Soldered)",
+          "Storage: 512GB SSD M.2 2280 PCIe",
+          "Display: 14\" FHD (1920x1080) IPS 300nits",
+          "OS: Windows 11 Pro"
+        ].join('\n')
+      },
+      {
+        productName: "ASUS ROG Strix G15 Gaming Laptop",
+        sku: "AS-ROG-G15",
+        brand: "ASUS",
+        category: "Gaming Laptops",
+        price: 1799.00,
+        offerPrice: 1699.00,
+        stockQuantity: 8,
+        status: "active",
+        featured: true,
+        description: "High-performance gaming laptop equipped with Ryzen 9 processor and NVIDIA GeForce RTX 3060 graphics.",
+        specifications: [
+          "CPU: AMD Ryzen 9 5900HX",
+          "RAM: 16GB DDR4 (8GB*2)",
+          "Storage: 1TB PCIe M.2 SSD",
+          "GPU: NVIDIA GeForce RTX 3060 6GB GDDR6",
+          "Display: 15.6\" FHD 144Hz"
+        ].join('\n')
+      },
+      {
+        productName: "Dell Precision 3561 Mobile Workstation",
+        sku: "DL-PREC-3561",
+        brand: "Dell",
+        category: "Workstations",
+        price: 2199.00,
+        offerPrice: 1999.00,
+        stockQuantity: 5,
+        status: "active",
+        featured: false,
+        description: "Extreme processing power for CAD design, software development, and demanding office workloads.",
+        specifications: [
+          "CPU: Intel Core i7-11850H",
+          "RAM: 32GB DDR4",
+          "Storage: 1TB NVMe Class 40 SSD",
+          "GPU: NVIDIA T600 4GB GDDR6",
+          "OS: Windows 11 Pro"
+        ].join('\n')
+      },
+      {
         productName: "Hikvision DS-2CD2143G2-I Dome Camera",
         sku: "HK-DOME-001",
         brand: "Hikvision",
-        category: "Dome Cameras",
-        price: 59.90,
-        offerPrice: 54.90,
+        category: "CCTV Cameras",
+        price: 89.90,
+        offerPrice: 79.90,
         stockQuantity: 42,
         status: "active",
-        featured: true,
+        featured: false,
         description: "4MP AcuSense network dome camera with smart motion detection and night vision.",
         specifications: [
           "Resolution: 4MP",
@@ -57,13 +152,13 @@ const AdminDashboard = () => {
         ].join('\n')
       },
       {
-        productName: "Hikvision DS-2CD2T47G2 Bullet Camera",
-        sku: "HK-BLT-002",
-        brand: "Hikvision",
-        category: "Bullet Cameras",
-        price: 74.90,
-        offerPrice: 69.90,
-        stockQuantity: 35,
+        productName: "Dahua IPC-HFW1431S Bullet Camera",
+        sku: "DH-BLT-002",
+        brand: "Dahua",
+        category: "CCTV Cameras",
+        price: 69.90,
+        offerPrice: 59.90,
+        stockQuantity: 30,
         status: "active",
         featured: false,
         description: "Outdoor bullet camera with AcuSense technology and excellent low-light performance.",
@@ -76,143 +171,48 @@ const AdminDashboard = () => {
         ].join('\n')
       },
       {
-        productName: "Dahua IPC-HDW1431T1 Dome Camera",
-        sku: "DH-DOME-003",
-        brand: "Dahua",
-        category: "Dome Cameras",
-        price: 48.90,
-        offerPrice: 44.90,
-        stockQuantity: 28,
-        status: "active",
-        featured: true,
-        description: "Professional indoor dome camera suitable for offices and retail stores.",
-        specifications: [
-          "Resolution: 4MP",
-          "IR Distance: 30m",
-          "Smart Detection",
-          "PoE Enabled",
-          "IP67 Rated"
-        ].join('\n')
-      },
-      {
-        productName: "Dahua HAC-HFW1200 Bullet Camera",
-        sku: "DH-BLT-004",
-        brand: "Dahua",
-        category: "Bullet Cameras",
-        price: 32.90,
-        offerPrice: 29.90,
-        stockQuantity: 55,
-        status: "active",
-        featured: false,
-        description: "2MP HDCVI bullet camera with long-range IR night vision.",
-        specifications: [
-          "Resolution: 2MP",
-          "Night Vision: 80m",
-          "Weatherproof",
-          "Outdoor Use",
-          "HDCVI Technology"
-        ].join('\n')
-      },
-      {
-        productName: "CP Plus CP-UNC-DA41L3 Dome Camera",
-        sku: "CP-DOME-005",
-        brand: "CP Plus",
-        category: "Dome Cameras",
-        price: 37.90,
-        offerPrice: 34.90,
-        stockQuantity: 20,
-        status: "active",
-        featured: false,
-        description: "Reliable dome camera for commercial and residential installations.",
-        specifications: [
-          "Resolution: 4MP",
-          "IR Distance: 30m",
-          "PoE Support",
-          "IP67",
-          "H.265"
-        ].join('\n')
-      },
-      {
-        productName: "Hikvision DS-7608NI-K2 NVR",
+        productName: "Hikvision DS-7608NI NVR System",
         sku: "HK-NVR-006",
         brand: "Hikvision",
-        category: "NVR",
-        price: 129.90,
-        offerPrice: 119.90,
-        stockQuantity: 12,
+        category: "NVR Systems",
+        price: 249.00,
+        offerPrice: 229.00,
+        stockQuantity: 15,
         status: "active",
-        featured: true,
+        featured: false,
         description: "8-channel network video recorder supporting up to 8 IP cameras.",
         specifications: [
           "Channels: 8",
-          "Storage: 2 SATA",
+          "Storage: 2 SATA Slots",
           "Compression: H.265+",
           "HDMI Output",
           "Remote Viewing"
         ].join('\n')
       },
       {
-        productName: "Dahua DHI-NVR2108HS-8P-I",
-        sku: "DH-NVR-007",
-        brand: "Dahua",
-        category: "NVR",
-        price: 139.90,
-        offerPrice: 129.90,
-        stockQuantity: 10,
-        status: "active",
-        featured: false,
-        description: "8-channel AI-enabled NVR with PoE support.",
-        specifications: [
-          "Channels: 8",
-          "Built-in PoE",
-          "AI Detection",
-          "H.265+",
-          "Remote Access"
-        ].join('\n')
-      },
-      {
-        productName: "Hikvision DS-2DE4425IW-DE PTZ Camera",
-        sku: "HK-PTZ-008",
-        brand: "Hikvision",
-        category: "PTZ Cameras",
-        price: 289.90,
-        offerPrice: 269.90,
-        stockQuantity: 5,
-        status: "active",
-        featured: true,
-        description: "25x optical zoom PTZ camera for large-scale surveillance.",
-        specifications: [
-          "Resolution: 4MP",
-          "Zoom: 25x Optical",
-          "Night Vision: 100m",
-          "Auto Tracking",
-          "IP66"
-        ].join('\n')
-      },
-      {
-        productName: "ZKTeco F18 Access Control",
+        productName: "ZKTeco F18 Access Control Terminal",
         sku: "ZK-ACS-009",
         brand: "ZKTeco",
         category: "Access Control",
-        price: 89.90,
-        offerPrice: 84.90,
+        price: 149.00,
+        offerPrice: 139.00,
         stockQuantity: 15,
         status: "active",
-        featured: true,
-        description: "Fingerprint and RFID based access control terminal.",
+        featured: false,
+        description: "Fingerprint and RFID-based access control and employee time attendance terminal.",
         specifications: [
           "Fingerprint Capacity: 3000",
           "RFID Support",
-          "TCP/IP",
+          "TCP/IP and RS485 Interface",
           "Attendance Logs",
-          "USB Backup"
+          "USB Backup Support"
         ].join('\n')
       }
     ];
 
     try {
       // 1. Create categories
-      const categoriesToCreate = ["Dome Cameras", "Bullet Cameras", "NVR", "PTZ Cameras", "Access Control"];
+      const categoriesToCreate = ["Laptops", "Gaming Laptops", "Business Laptops", "Workstations", "CCTV Cameras", "NVR Systems", "Access Control"];
       const currentCats = await categoryService.getCategories();
       for (const catName of categoriesToCreate) {
         if (!currentCats.find(c => c.name.toLowerCase() === catName.toLowerCase())) {
@@ -221,7 +221,7 @@ const AdminDashboard = () => {
       }
 
       // 2. Create brands
-      const brandsToCreate = ["Hikvision", "Dahua", "CP Plus", "ZKTeco"];
+      const brandsToCreate = ["Dell", "HP", "Lenovo", "ASUS", "Hikvision", "Dahua", "ZKTeco"];
       const currentBrands = await brandService.getBrands();
       for (const bName of brandsToCreate) {
         if (!currentBrands.find(b => b.name.toLowerCase() === bName.toLowerCase())) {
@@ -237,7 +237,7 @@ const AdminDashboard = () => {
         }
       }
 
-      setSeedStatus('Database seeded successfully!');
+      setSeedStatus('IT & Security database seeded successfully!');
       setTimeout(() => {
         setSeedStatus('');
         window.location.reload();

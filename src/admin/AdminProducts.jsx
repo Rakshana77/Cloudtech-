@@ -27,6 +27,7 @@ const AdminProducts = () => {
   const [sku, setSku] = useState('');
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
+  const [productType, setProductType] = useState('laptop');
   const [description, setDescription] = useState('');
   const [specifications, setSpecifications] = useState('');
   const [price, setPrice] = useState('');
@@ -65,6 +66,7 @@ const AdminProducts = () => {
     setSku('');
     setBrand(brands[0]?.name || '');
     setCategory(categories[0]?.name || '');
+    setProductType('laptop');
     setDescription('');
     setSpecifications('');
     setPrice('');
@@ -84,6 +86,7 @@ const AdminProducts = () => {
     setSku(p.sku || '');
     setBrand(p.brand || '');
     setCategory(p.category || '');
+    setProductType(p.productType || 'laptop');
     setDescription(p.description || '');
     setSpecifications(p.specifications || '');
     setPrice(p.price || '');
@@ -110,6 +113,7 @@ const AdminProducts = () => {
         sku,
         brand,
         category,
+        productType,
         description,
         specifications,
         price: Number(price) || 0,
@@ -409,7 +413,7 @@ const AdminProducts = () => {
               </div>
 
               {/* Grid 2: Relationships */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label className="text-xs font-semibold text-slate-600 uppercase block mb-1">Manufacturer Brand</label>
                   <select
@@ -430,6 +434,17 @@ const AdminProducts = () => {
                   >
                     <option value="">Select Category</option>
                     {categories.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-slate-600 uppercase block mb-1">Product Type *</label>
+                  <select
+                    value={productType}
+                    onChange={(e) => setProductType(e.target.value)}
+                    className="block w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-800 text-sm bg-white"
+                  >
+                    <option value="laptop">Laptops & IT Gear (laptop)</option>
+                    <option value="security">Security Products (security)</option>
                   </select>
                 </div>
               </div>

@@ -46,6 +46,7 @@ export const productService = {
         sku: productData.sku || '',
         brand: productData.brand || '',
         category: productData.category || '',
+        productType: productData.productType || 'laptop',
         description: productData.description || '',
         specifications: productData.specifications || '',
         price: Number(productData.price) || 0,

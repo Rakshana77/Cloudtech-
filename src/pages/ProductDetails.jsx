@@ -97,26 +97,28 @@ const ProductDetails = () => {
         
         {/* Gallery / Images */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="h-96 w-full bg-slate-50 border border-slate-200/80 rounded-xl flex items-center justify-center p-6 relative overflow-hidden">
+          <div className="h-[650px] w-full bg-white border border-slate-200/80 rounded-xl flex items-center justify-center p-6 relative overflow-hidden">
             <img 
               src={activeImage || "https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=400"} 
               alt={product.productName} 
-              className="max-h-full max-w-full object-contain" 
+              className="w-full h-full object-contain transition-transform duration-350 ease-out hover:scale-[1.04] cursor-zoom-in" 
             />
           </div>
           
           {/* Thumbnails */}
-          {(product.galleryImages && product.galleryImages.length > 0) && (
-            <div className="flex gap-3 overflow-x-auto pb-2">
-              <button 
-                onClick={() => setActiveImage(product.image)}
-                className={`w-16 h-16 border rounded-lg bg-slate-50 overflow-hidden flex items-center justify-center p-1 flex-shrink-0 transition-all ${
-                  activeImage === product.image ? 'border-blue-600 ring-2 ring-blue-500/20' : 'border-slate-200 hover:border-slate-300'
-                }`}
-              >
-                <img src={product.image} className="max-h-full max-w-full object-contain" alt="main" />
-              </button>
-              {product.galleryImages.map((url, idx) => (
+          {((product.galleryImages && product.galleryImages.length > 0) || product.image) && (
+            <div className="flex gap-3 overflow-x-auto pb-2 justify-start">
+              {product.image && (
+                <button 
+                  onClick={() => setActiveImage(product.image)}
+                  className={`w-16 h-16 border rounded-lg bg-slate-50 overflow-hidden flex items-center justify-center p-1 flex-shrink-0 transition-all ${
+                    activeImage === product.image ? 'border-blue-600 ring-2 ring-blue-500/20' : 'border-slate-200 hover:border-slate-300'
+                  }`}
+                >
+                  <img src={product.image} className="max-h-full max-w-full object-contain" alt="main" />
+                </button>
+              )}
+              {product.galleryImages && product.galleryImages.map((url, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveImage(url)}
