@@ -1,8 +1,37 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import { MessageCircle } from 'lucide-react';
+
+const PageTitleHandler = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    let title = 'Cloud Info Tech | Laptop Sales & CCTV Security Systems';
+    const path = location.pathname;
+    
+    if (path === '/products') {
+      title = 'Equipment Catalog | Cloud Info Tech';
+    } else if (path === '/contact') {
+      title = 'Contact Us | Cloud Info Tech';
+    } else if (path === '/request-quote') {
+      title = 'Request a Quote | Cloud Info Tech';
+    } else if (path === '/cart') {
+      title = 'Shopping Cart | Cloud Info Tech';
+    } else if (path === '/checkout') {
+      title = 'Checkout | Cloud Info Tech';
+    } else if (path.startsWith('/product/')) {
+      title = 'Product Details | Cloud Info Tech';
+    } else if (path.startsWith('/admin')) {
+      title = 'Admin Panel | Cloud Info Tech';
+    }
+    
+    document.title = title;
+  }, [location]);
+
+  return null;
+};
 
 
 // Public components & pages
@@ -31,6 +60,7 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <Router>
+          <PageTitleHandler />
           <Routes>
             {/* Admin Routes with distinct layout */}
             <Route path="/admin/login" element={<Login />} />

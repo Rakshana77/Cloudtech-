@@ -20,23 +20,23 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Title Banner */}
-        <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">Get In Touch</h2>
-          <p className="mt-4 text-xs text-slate-500 font-semibold uppercase tracking-wider">
-            Contact Singapore's Premium Security Systems Distributor & Integrator
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <h1 className="font-h1 tracking-tight">Contact Cloud Info Tech</h1>
+          <p className="font-subheading">
+            Contact Singapore's Premium Security Systems Distributor & Integrator. We supply and support products from leading laptop, networking and security manufacturers.
           </p>
         </div>
 
         {/* Contact Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 */}
-          <div className="bg-white p-6 rounded-xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center space-y-4">
+          <div className="bg-white p-6 rounded-[18px] border border-[#E2E8F0] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:scale-[1.05] hover:-translate-y-1.5 hover:shadow-lg hover:border-blue-600/30 transition-all duration-300 flex flex-col items-center text-center space-y-4">
             <div className="p-3 bg-blue-50 border border-blue-100 rounded-lg text-blue-600">
               <Phone className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-800 text-sm">Direct Phone</h4>
-              <p className="text-xs text-slate-500 mt-1">Mon-Fri 9am to 6pm</p>
+              <h3 className="font-h3 text-lg mb-1">Direct Phone</h3>
+              <p className="text-xs text-slate-500">Mon-Fri 9am to 6pm</p>
               <a href="tel:+6567471104" className="text-sm font-bold text-blue-600 block mt-2 hover:underline">
                 +65 6747 1104
               </a>
@@ -44,13 +44,13 @@ const Contact = () => {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white p-6 rounded-xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center space-y-4">
+          <div className="bg-white p-6 rounded-[18px] border border-[#E2E8F0] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:scale-[1.05] hover:-translate-y-1.5 hover:shadow-lg hover:border-blue-600/30 transition-all duration-300 flex flex-col items-center text-center space-y-4">
             <div className="p-3 bg-blue-50 border border-blue-100 rounded-lg text-blue-600">
               <Mail className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-800 text-sm">Email Support</h4>
-              <p className="text-xs text-slate-500 mt-1">24/7 client dispatch</p>
+              <h3 className="font-h3 text-lg mb-1">Email Support</h3>
+              <p className="text-xs text-slate-500">24/7 client dispatch</p>
               <a href="mailto:sales@cloudinfotech.com.sg" className="text-sm font-bold text-blue-600 block mt-2 hover:underline">
                 sales@cloudinfotech.com.sg
               </a>
@@ -58,13 +58,13 @@ const Contact = () => {
           </div>
 
           {/* Card 3 */}
-          <div className="bg-white p-6 rounded-xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center space-y-4">
+          <div className="bg-white p-6 rounded-[18px] border border-[#E2E8F0] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:scale-[1.05] hover:-translate-y-1.5 hover:shadow-lg hover:border-blue-600/30 transition-all duration-300 flex flex-col items-center text-center space-y-4">
             <div className="p-3 bg-blue-50 border border-blue-100 rounded-lg text-blue-600">
               <MapPin className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-800 text-sm">Headquarters</h4>
-              <p className="text-xs text-slate-500 mt-1">Scoping & inventory center</p>
+              <h3 className="font-h3 text-lg mb-1">Headquarters</h3>
+              <p className="text-xs text-slate-500">Scoping & inventory center</p>
               <span className="text-xs text-slate-700 block mt-2 font-medium">
                 10 Ubi Crescent, #04-32, Singapore 408564
               </span>

@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
   const discount = product.offerPrice > 0 ? Math.round(((product.price - product.offerPrice) / product.price) * 100) : 0;
 
   return (
-    <div className="group relative flex flex-col bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+    <div className="bg-white border border-[#E2E8F0] rounded-[18px] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:scale-[1.05] hover:-translate-y-1.5 hover:shadow-lg hover:border-[#1453E3]/50 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group">
       <Link to={`/product/${product.id}`} className="relative h-56 overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center p-4">
         <img 
           alt={product.productName} 
@@ -43,7 +43,7 @@ const ProductCard = ({ product }) => {
           </div>
           
           <Link to={`/product/${product.id}`} className="block">
-            <h3 className="font-bold text-slate-800 text-sm leading-tight hover:text-blue-600 transition-colors line-clamp-2">
+            <h3 className="font-bold text-slate-800 text-sm sm:text-base leading-tight hover:text-blue-600 transition-colors line-clamp-2">
               {product.productName}
             </h3>
           </Link>

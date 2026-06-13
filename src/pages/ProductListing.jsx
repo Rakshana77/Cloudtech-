@@ -128,7 +128,7 @@ const ProductListing = () => {
             <ChevronRight className="w-3 h-3" />
             <span className="text-slate-600">Equipment Catalog</span>
           </nav>
-          <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight text-left">Technology Marketplace</h1>
+          <h1 className="font-h1 tracking-tight text-left">Technology Marketplace</h1>
         </div>
 
         {/* Tab System */}
@@ -168,9 +168,9 @@ const ProductListing = () => {
         {/* Grid listing */}
         <section className="flex-grow space-y-6">
           {/* Header bar */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 pb-4 border-b border-slate-100">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-slate-100">
             <div className="text-left">
-              <h2 className="text-lg font-bold text-slate-800 tracking-tight capitalize">
+              <h2 className="text-xl md:text-2xl font-bold tracking-tight text-[#111827] capitalize">
                 {activeTab === 'laptops' ? 'Laptops & Office Workstations' : 'CCTV & Security Products'}
               </h2>
               <p className="text-slate-500 text-xs mt-0.5">
@@ -178,9 +178,9 @@ const ProductListing = () => {
               </p>
             </div>
             
-            <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
+            <div className="flex items-center gap-3 w-full md:w-auto flex-nowrap">
               {/* Quick Search bar */}
-              <div className="relative flex-grow md:flex-grow-0">
+              <div className="relative w-full md:w-56">
                 <span className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
                   <Search className="h-3.5 w-3.5 text-slate-400" />
                 </span>
@@ -194,7 +194,7 @@ const ProductListing = () => {
               </div>
 
               {/* Sort by dropdown */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1.5 shrink-0">
                 <span className="text-xs font-semibold text-slate-500">Sort:</span>
                 <select
                   value={sortBy}

@@ -19,6 +19,81 @@ import {
   Monitor
 } from 'lucide-react';
 
+const getBrandBranding = (name) => {
+  const lower = (name || '').toLowerCase();
+  if (lower.includes('dell')) {
+    return {
+      gradient: 'from-blue-600 to-blue-800',
+      hoverBorder: 'hover:border-blue-600',
+      glowShadow: 'hover:shadow-[0_12px_30px_rgba(37,99,235,0.3)]',
+      textColor: 'text-blue-600'
+    };
+  }
+  if (lower.includes('hp')) {
+    return {
+      gradient: 'from-sky-400 to-sky-600',
+      hoverBorder: 'hover:border-sky-400',
+      glowShadow: 'hover:shadow-[0_12px_30px_rgba(56,189,248,0.3)]',
+      textColor: 'text-sky-500'
+    };
+  }
+  if (lower.includes('lenovo')) {
+    return {
+      gradient: 'from-red-600 to-red-800',
+      hoverBorder: 'hover:border-red-600',
+      glowShadow: 'hover:shadow-[0_12px_30px_rgba(220,38,38,0.3)]',
+      textColor: 'text-red-600'
+    };
+  }
+  if (lower.includes('asus')) {
+    return {
+      gradient: 'from-purple-600 to-indigo-700',
+      hoverBorder: 'hover:border-purple-600',
+      glowShadow: 'hover:shadow-[0_12px_30px_rgba(147,51,234,0.3)]',
+      textColor: 'text-purple-600'
+    };
+  }
+  if (lower.includes('hikvision')) {
+    return {
+      gradient: 'from-red-800 to-red-950',
+      hoverBorder: 'hover:border-red-800',
+      glowShadow: 'hover:shadow-[0_12px_30px_rgba(153,27,27,0.3)]',
+      textColor: 'text-red-800'
+    };
+  }
+  if (lower.includes('dahua')) {
+    return {
+      gradient: 'from-orange-500 to-red-600',
+      hoverBorder: 'hover:border-orange-500',
+      glowShadow: 'hover:shadow-[0_12px_30px_rgba(234,88,12,0.3)]',
+      textColor: 'text-orange-600'
+    };
+  }
+  if (lower.includes('zkteco')) {
+    return {
+      gradient: 'from-emerald-500 to-teal-700',
+      hoverBorder: 'hover:border-emerald-600',
+      glowShadow: 'hover:shadow-[0_12px_30px_rgba(5,150,105,0.3)]',
+      textColor: 'text-emerald-600'
+    };
+  }
+  if (lower.includes('cp plus')) {
+    return {
+      gradient: 'from-blue-900 to-slate-900',
+      hoverBorder: 'hover:border-blue-900',
+      glowShadow: 'hover:shadow-[0_12px_30px_rgba(30,58,138,0.3)]',
+      textColor: 'text-blue-900'
+    };
+  }
+  // Default - Primary Blue
+  return {
+    gradient: 'from-blue-600 to-indigo-600',
+    hoverBorder: 'hover:border-[#1453E3]',
+    glowShadow: 'hover:shadow-[0_12px_30px_rgba(20,83,227,0.3)]',
+    textColor: 'text-[#1453E3]'
+  };
+};
+
 const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [brands, setBrands] = useState([]);
@@ -53,12 +128,12 @@ const Home = () => {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#1453E3]/10 text-[#1453E3] text-xs font-bold tracking-widest uppercase border border-[#1453E3]/20">
             Trusted IT & Security Partner
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-extrabold leading-[1.15] tracking-tight text-[#0F172A]">
+          <h1 className="font-h1 tracking-tight">
             Professional <br />
             <span className="text-[#1453E3]">Laptop Services</span> & <br />
             <span className="text-[#1453E3]">Security Systems</span>
           </h1>
-          <p className="text-base sm:text-lg text-[#475569] leading-relaxed">
+          <p className="font-subheading">
             Cloud Info Tech provides professional laptop sales, laptop repairs, desktop solutions, networking infrastructure, CCTV surveillance, access control systems and ongoing IT support for businesses and homes.
           </p>
           <div className="flex flex-wrap gap-4 pt-2">
@@ -101,17 +176,17 @@ const Home = () => {
               <span className="text-[11px] font-extrabold text-[#1453E3] uppercase tracking-[0.2em] block">
                 ABOUT CLOUD INFO TECH
               </span>
-              <h2 className="text-4xl lg:text-[48px] font-extrabold leading-[1.15] tracking-tight text-[#0F172A]">
+              <h2 className="font-h2 tracking-tight">
                 Your Trusted <span className="text-[#1453E3]">Technology</span> & <br />
                 <span className="text-[#1453E3]">Security</span> Partner
               </h2>
             </div>
             
-            <div className="space-y-6 text-sm text-[#475569] leading-relaxed">
-              <p>
+            <div className="space-y-6">
+              <p className="font-subheading">
                 Cloud Info Tech provides complete technology solutions for businesses and individuals. From laptop sales and repairs to networking infrastructure and CCTV security systems, we help organizations build secure, efficient and reliable digital environments.
               </p>
-              <p>
+              <p className="font-subheading">
                 With a focus on quality products, expert support and long-term customer relationships, we deliver practical technology solutions tailored to real business needs.
               </p>
             </div>
@@ -147,7 +222,7 @@ const Home = () => {
               return (
                 <div 
                   key={i} 
-                  className="bg-white border border-[#E5E7EB] rounded-[24px] p-6 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between min-h-[160px]"
+                  className="bg-white border border-[#E2E8F0] rounded-[18px] p-6 shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:scale-[1.05] hover:-translate-y-1.5 hover:shadow-lg hover:border-blue-600/30 transition-all duration-300 text-left flex flex-col justify-between min-h-[160px] group"
                 >
                   <span className="inline-flex p-3 rounded-2xl bg-[#1453E3]/5 text-[#1453E3] w-fit">
                     <StatIcon className="w-5 h-5" />
@@ -171,10 +246,10 @@ const Home = () => {
           <span className="text-sm font-extrabold text-[#1453E3] uppercase tracking-[0.2em] block">
             WHAT WE DO
           </span>
-          <h2 className="text-4xl md:text-[56px] font-extrabold text-[#111827] leading-[1.15] tracking-tight">
+          <h2 className="font-h2 tracking-tight">
             Our Solutions
           </h2>
-          <p className="text-[#475569] text-base md:text-lg max-w-[700px] mx-auto leading-relaxed">
+          <p className="font-subheading max-w-[700px] mx-auto">
             Comprehensive IT, Laptop, Networking and Security Services for businesses and individuals.
           </p>
         </div>
@@ -223,15 +298,15 @@ const Home = () => {
               <Link 
                 key={i} 
                 to={cat.link}
-                className="bg-white p-8 h-[280px] rounded-[24px] border border-[#E5E7EB] shadow-[0_10px_40px_rgba(15,23,42,0.08)] hover:shadow-[0_20px_50px_rgba(20,83,227,0.15)] transition-all duration-300 transform hover:-translate-y-2 text-left flex flex-col justify-between group"
+                className="bg-white p-8 h-[280px] rounded-[18px] border border-[#E2E8F0] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:scale-[1.05] hover:-translate-y-1.5 hover:shadow-lg hover:border-blue-600/50 transition-all duration-300 text-left flex flex-col justify-between group"
               >
                 <div className="space-y-4">
-                  <div className="w-[60px] h-[60px] rounded-2xl bg-[#1453E3]/5 text-[#1453E3] flex items-center justify-center group-hover:scale-110 group-hover:bg-[#1453E3] group-hover:text-white transition-all duration-300">
+                  <div className="w-[60px] h-[60px] rounded-2xl bg-[#1453E3]/5 text-[#1453E3] flex items-center justify-center group-hover:scale-115 group-hover:bg-[#1453E3] group-hover:text-white transition-all duration-300">
                     <Icon className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-[#111827] mb-2">{cat.title}</h3>
-                    <p className="text-[#475569] text-sm leading-relaxed line-clamp-3">{cat.desc}</p>
+                    <h3 className="font-h3 mb-2">{cat.title}</h3>
+                    <p className="text-[#64748B] text-sm leading-relaxed line-clamp-3 group-hover:text-slate-700 transition-colors">{cat.desc}</p>
                   </div>
                 </div>
                 <span className="text-[#1453E3] text-xs font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
@@ -245,10 +320,10 @@ const Home = () => {
 
       {/* Popular Tech Gear Section */}
       <section className="max-w-[1280px] mx-auto px-6 py-16 space-y-10">
-        <div className="flex justify-between items-end border-b border-[#E5E7EB] pb-6">
+        <div className="flex justify-between items-end border-b border-[#E2E8F0] pb-6">
           <div>
-            <h2 className="text-3xl font-extrabold tracking-tight text-[#111827]">Popular Tech Gear</h2>
-            <p className="text-[#475569] text-sm mt-1">High-quality laptops, custom systems, and CCTV hardware trusted by businesses.</p>
+            <h2 className="font-h2 tracking-tight">Popular Tech Gear</h2>
+            <p className="font-subheading !text-sm mt-1">High-quality laptops, custom systems, and CCTV hardware trusted by businesses.</p>
           </div>
           <Link to="/products" className="text-[#1453E3] font-bold text-sm flex items-center gap-1 hover:underline">
             Full Catalog <ArrowRight className="w-4 h-4" />
@@ -258,7 +333,7 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {loading ? (
             Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="animate-pulse bg-white border h-[460px] rounded-[24px]"></div>
+              <div key={i} className="animate-pulse bg-white border h-[460px] rounded-[18px]"></div>
             ))
           ) : featuredProducts.length === 0 ? (
             <div className="col-span-full text-center text-xs text-slate-400 py-10">
@@ -278,7 +353,7 @@ const Home = () => {
                 return (
                   <div 
                     key={product.id} 
-                    className="bg-white border border-[#E5E7EB] rounded-[24px] h-[460px] flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1.5 group p-5"
+                    className="bg-white border border-[#E2E8F0] rounded-[18px] h-[460px] flex flex-col justify-between overflow-hidden shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:scale-[1.05] hover:-translate-y-1.5 hover:shadow-lg hover:border-[#1453E3]/50 transition-all duration-300 group p-5"
                   >
                     {/* Top Image area */}
                     <Link to={`/product/${product.id}`} className="relative h-[220px] bg-slate-50 border border-slate-100 rounded-[20px] flex items-center justify-center p-4 overflow-hidden">
@@ -313,7 +388,7 @@ const Home = () => {
                       </div>
                       
                       <Link to={`/product/${product.id}`} className="block">
-                        <h4 className="font-bold text-[#111827] text-sm leading-snug hover:text-[#1453E3] transition-colors line-clamp-2">
+                        <h4 className="font-bold text-[#111827] text-sm sm:text-base leading-snug hover:text-[#1453E3] transition-colors line-clamp-2">
                           {product.productName}
                         </h4>
                       </Link>
@@ -321,7 +396,7 @@ const Home = () => {
                     </div>
 
                     {/* Price and Add button */}
-                    <div className="flex items-center justify-between pt-3 border-t border-[#E5E7EB]">
+                    <div className="flex items-center justify-between pt-3 border-t border-[#E2E8F0]">
                       <div className="flex flex-col text-left">
                         {product.offerPrice > 0 ? (
                           <>
@@ -348,64 +423,94 @@ const Home = () => {
       </section>
 
       {/* Brands available section */}
-      <section className="w-full bg-[#F8FAFC] py-20 text-center border-t border-[#E5E7EB]">
+      <section 
+        className="w-full py-20 text-center border-t border-[#E5E7EB]"
+        style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%)' }}
+      >
         <div className="max-w-[1280px] mx-auto px-6 space-y-12">
           
           <div className="space-y-3 max-w-[700px] mx-auto">
-            <h3 className="text-3xl font-extrabold tracking-tight text-[#111827]">
-              Technology Brands We Support
-            </h3>
-            <p className="text-[#475569] text-sm md:text-base font-medium">
-              We supply and support products from leading laptop, networking and security manufacturers.
+            <h2 className="font-h2 tracking-tight">
+              Brands Available in Our Catalog
+            </h2>
+            <p className="font-subheading">
+              We supply products from leading laptop, networking and security manufacturers.
             </p>
           </div>
 
           {brands.length === 0 ? (
             <div className="text-slate-400 text-xs py-8">No brands configured yet.</div>
           ) : (
-            <>
-              {/* Desktop Infinite Marquee */}
-              <div className="hidden md:block overflow-hidden relative w-full py-4">
-                {/* Gradient Fades for Premium look */}
-                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
-                
-                <div className="animate-marquee-ltr flex gap-8 items-center">
-                  {[...brands, ...brands, ...brands, ...brands].map((brand, idx) => {
-                    const logoSrc = brand.logo || brand.logoUrl;
-                    return (
-                      <div 
-                        key={idx}
-                        className="bg-white border border-[#E5E7EB] rounded-2xl px-7 py-4 flex items-center justify-center gap-3 shrink-0 text-[#111827] hover:border-[#1453E3] hover:text-[#1453E3] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 min-w-[180px] h-[72px]"
-                      >
-                        {logoSrc && (
-                          <img src={logoSrc} alt={brand.name} className="h-7 w-auto object-contain" />
-                        )}
-                        <span className="font-extrabold text-sm tracking-wide">{brand.name}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Mobile swipeable horizontal scroll */}
-              <div className="md:hidden flex overflow-x-auto gap-4 py-4 px-6 scrollbar-none snap-x snap-mandatory">
+            <div className="overflow-hidden relative w-full py-6">
+              {/* Gradient Fades for Premium look */}
+              <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
+              
+              <div className="animate-marquee flex gap-6 items-center">
+                {/* First loop of brands */}
                 {brands.map((brand, idx) => {
                   const logoSrc = brand.logo || brand.logoUrl;
+                  const branding = getBrandBranding(brand.name);
                   return (
                     <div 
-                      key={idx}
-                      className="snap-center bg-white border border-[#E5E7EB] rounded-2xl px-7 py-4 flex items-center justify-center gap-3 shrink-0 text-[#111827] hover:border-[#1453E3] hover:text-[#1453E3] hover:shadow-xl transition-all duration-300 min-w-[160px] h-[64px]"
+                      key={`brand-first-${brand.id || idx}`}
+                      className={`w-[160px] h-[80px] bg-white border border-[#E2E8F0] rounded-[18px] flex items-center justify-center gap-2.5 shrink-0 px-3.5 shadow-[0_8px_25px_rgba(15,23,42,0.06)] transition-all duration-300 hover:scale-[1.05] hover:-translate-y-1.5 cursor-pointer group ${branding.hoverBorder} ${branding.glowShadow}`}
                     >
-                      {logoSrc && (
-                        <img src={logoSrc} alt={brand.name} className="h-6 w-auto object-contain" />
+                      {logoSrc ? (
+                        <div className="flex items-center gap-2">
+                          <img 
+                            src={logoSrc} 
+                            alt={brand.name} 
+                            className="h-6 max-w-[50px] object-contain filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" 
+                          />
+                          <span className={`font-bold text-xs tracking-wide text-[#0F172A] group-hover:${branding.textColor} transition-colors select-none`}>
+                            {brand.name}
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full bg-gradient-to-br ${branding.gradient}`} />
+                          <span className={`font-bold text-xs tracking-wide text-[#0F172A] group-hover:${branding.textColor} transition-colors select-none`}>
+                            {brand.name}
+                          </span>
+                        </div>
                       )}
-                      <span className="font-extrabold text-xs tracking-wide">{brand.name}</span>
+                    </div>
+                  );
+                })}
+                {/* Second loop of brands to create seamless infinite scrolling */}
+                {brands.map((brand, idx) => {
+                  const logoSrc = brand.logo || brand.logoUrl;
+                  const branding = getBrandBranding(brand.name);
+                  return (
+                    <div 
+                      key={`brand-second-${brand.id || idx}`}
+                      className={`w-[160px] h-[80px] bg-white border border-[#E2E8F0] rounded-[18px] flex items-center justify-center gap-2.5 shrink-0 px-3.5 shadow-[0_8px_25px_rgba(15,23,42,0.06)] transition-all duration-300 hover:scale-[1.05] hover:-translate-y-1.5 cursor-pointer group ${branding.hoverBorder} ${branding.glowShadow}`}
+                    >
+                      {logoSrc ? (
+                        <div className="flex items-center gap-2">
+                          <img 
+                            src={logoSrc} 
+                            alt={brand.name} 
+                            className="h-6 max-w-[50px] object-contain filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" 
+                          />
+                          <span className={`font-bold text-xs tracking-wide text-[#0F172A] group-hover:${branding.textColor} transition-colors select-none`}>
+                            {brand.name}
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full bg-gradient-to-br ${branding.gradient}`} />
+                          <span className={`font-bold text-xs tracking-wide text-[#0F172A] group-hover:${branding.textColor} transition-colors select-none`}>
+                            {brand.name}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   );
                 })}
               </div>
-            </>
+            </div>
           )}
 
         </div>
@@ -413,10 +518,10 @@ const Home = () => {
 
       {/* Contact CTA Section */}
       <section className="max-w-[1280px] mx-auto px-6 py-16">
-        <div className="bg-gradient-to-r from-[#1453E3] to-[#0F172A] rounded-[32px] p-8 md:p-12 text-white flex flex-col lg:flex-row items-center justify-between gap-8 text-left shadow-xl shadow-[#1453E3]/10">
+        <div className="bg-gradient-to-r from-[#1453E3] to-[#0F172A] rounded-[18px] p-8 md:p-12 text-white flex flex-col lg:flex-row items-center justify-between gap-8 text-left shadow-[0_8px_25px_rgba(15,23,42,0.15)] hover:scale-[1.02] transition-all duration-300">
           <div className="space-y-3 max-w-[650px]">
-            <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight">Need Professional IT Support?</h3>
-            <p className="text-white/80 text-sm md:text-base leading-relaxed">
+            <h2 className="font-h2 tracking-tight !text-white">Need Professional IT Support?</h2>
+            <p className="font-subheading !text-white/80 mt-2">
               Get expert guidance for laptops, networking and security infrastructure.
             </p>
           </div>

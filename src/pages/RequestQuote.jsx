@@ -42,8 +42,8 @@ const RequestQuote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden grid grid-cols-1 md:grid-cols-5">
+    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-sans animate-fade-in">
+      <div className="max-w-4xl mx-auto bg-white rounded-[18px] shadow-[0_8px_25px_rgba(15,23,42,0.06)] border border-[#E2E8F0] overflow-hidden grid grid-cols-1 md:grid-cols-5 transition-all duration-300">
         
         {/* Left Info Column */}
         <div className="md:col-span-2 bg-slate-900 p-8 text-white flex flex-col justify-between">
@@ -53,7 +53,7 @@ const RequestQuote = () => {
               <span className="font-extrabold tracking-tight text-xl text-white">Cloud Info Tech</span>
             </div>
             <div className="space-y-3">
-              <h3 className="text-xl font-bold">Request a System Quote</h3>
+              <h3 className="font-h3 text-lg sm:text-xl !text-white">Request a System Quote</h3>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Whether you need CCTV surveillance, access control, NVR configurations or structured cabling, our experts will design a custom solution.
               </p>
@@ -87,7 +87,7 @@ const RequestQuote = () => {
               <div className="p-4 bg-emerald-100 rounded-full text-emerald-600 border border-emerald-200">
                 <CheckCircle2 className="w-12 h-12" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-800">Quotation Request Received</h3>
+              <h3 className="font-h3 text-xl sm:text-2xl text-slate-800">Quotation Request Received</h3>
               <p className="text-sm text-slate-500 max-w-sm">
                 Thank you! Your system RFQ has been successfully logged. An integration engineer will contact you shortly with estimates.
               </p>
@@ -101,7 +101,7 @@ const RequestQuote = () => {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-slate-800">CCTV & Integration RFQ</h3>
+                <h3 className="font-h3 text-xl sm:text-2xl text-slate-800">CCTV & Integration RFQ</h3>
                 <p className="text-xs text-slate-500 font-semibold mt-1">Submit your site parameters for dynamic scoping</p>
               </div>
 
