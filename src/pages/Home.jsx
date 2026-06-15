@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { productService } from '../services/productService';
 import { brandService } from '../services/brandService';
+import { heroBannerService } from '../services/heroBannerService';
 import { 
   ArrowRight, 
   ShieldCheck, 
@@ -99,16 +100,40 @@ const Home = () => {
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Slider State & Data
+  const [banners, setBanners] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const defaultBanners = [
+    {
+      title: "One Partner For All Your Technology Needs",
+      subtitle: "Laptop sales, repairs, networking, security systems and ongoing IT support for businesses and homes.",
+      buttonText: "Get Free Consultation",
+      buttonLink: "/contact",
+      imageUrl: "/images/combined_it_hero.png",
+      mobileImageUrl: "/images/combined_it_hero.png",
+      sortOrder: 1,
+      status: true
+    }
+  ];
+
+  const activeBanners = banners.length > 0 ? banners : defaultBanners;
+
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [prods, brnds] = await Promise.all([
+        const [prods, brnds, fetchedBanners] = await Promise.all([
           productService.getProducts(),
-          brandService.getBrands()
+          brandService.getBrands(),
+          heroBannerService.getBanners()
         ]);
         
         setFeaturedProducts(prods.filter(p => p.featured === true || p.status === 'active').slice(0, 4));
         setBrands(brnds.filter(b => b.status === 'active'));
+        setBanners(fetchedBanners.filter(b => b.status === true));
       } catch (error) {
         console.error('Error fetching home statistics:', error);
       } finally {
@@ -118,51 +143,178 @@ const Home = () => {
     loadData();
   }, []);
 
+  // Auto slide effect
+  useEffect(() => {
+    if (isHovered || activeBanners.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % activeBanners.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isHovered, activeBanners.length]);
+
+  // Handle manual navigation
+  const nextSlide = () => {
+    setCurrentSlide(prev => (prev + 1) % activeBanners.length);
+  };
+  const prevSlide = () => {
+    setCurrentSlide(prev => (prev - 1 + activeBanners.length) % activeBanners.length);
+  };
+
+  // Touch Swipe handlers
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
   return (
     <main className="text-[#111827] bg-[#F6F8FB] font-sans min-h-screen pb-16">
       
-      {/* Hero Section */}
-      <section className="max-w-[1280px] mx-auto px-6 py-16 flex flex-col lg:flex-row items-center gap-12">
-        {/* Left Side (50%) */}
-        <div className="w-full lg:w-[50%] space-y-8 text-left">
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#1453E3]/10 text-[#1453E3] text-xs font-bold tracking-widest uppercase border border-[#1453E3]/20">
-            Trusted IT & Security Partner
-          </span>
-          <h1 className="font-h1 tracking-tight">
-            Professional <br />
-            <span className="text-[#1453E3]">Laptop Services</span> & <br />
-            <span className="text-[#1453E3]">Security Systems</span>
-          </h1>
-          <p className="font-subheading">
-            Cloud Info Tech provides professional laptop sales, laptop repairs, desktop solutions, networking infrastructure, CCTV surveillance, access control systems and ongoing IT support for businesses and homes.
-          </p>
-          <div className="flex flex-wrap gap-4 pt-2">
-            <Link 
-              to="/request-quote" 
-              className="bg-[#1453E3] hover:bg-[#1453E3]/90 text-white px-8 py-4 rounded-xl font-bold text-sm shadow-lg shadow-[#1453E3]/20 transition-all"
+      {/* Dynamic Hero Slider */}
+      <section 
+        className="relative w-full h-[720px] bg-slate-950 overflow-hidden select-none"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Slides Track */}
+        {activeBanners.map((slide, index) => {
+          const isActive = index === currentSlide;
+          return (
+            <div
+              key={index}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
             >
-              Get Free Quote
-            </Link>
-            <a 
-              href="#solutions" 
-              className="bg-white text-[#475569] px-8 py-4 rounded-xl font-bold text-sm border border-[#E5E7EB] hover:bg-slate-50 transition-all"
-            >
-              Explore Solutions
-            </a>
-          </div>
-        </div>
+              {/* Background Image with Parallax & Zoom Effect (Desktop) */}
+              <div 
+                className={`absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[5000ms] ease-out hidden md:block ${
+                  isActive ? 'scale-105 translate-y-0' : 'scale-100 translate-y-2'
+                }`}
+                style={{ backgroundImage: `url(${slide.imageUrl || slide.image})` }}
+              />
 
-        {/* Right Side (50% container) */}
-        <div className="w-full lg:w-[50%]">
-          <div className="relative rounded-[40px] overflow-hidden flex items-center justify-center min-h-[440px] shadow-2xl bg-gradient-to-br from-[#0B1726] via-[#102B3A] to-[#152B36]">
-            {/* Glow center effect */}
-            <div className="absolute w-80 h-80 rounded-full bg-blue-500/10 blur-[80px]" />
-            <img 
-              alt="Premium IT Products, Laptops and CCTV Showcase" 
-              className="absolute inset-0 w-full h-full object-cover z-10 drop-shadow-[0_20px_50px_rgba(20,83,227,0.3)]" 
-              src="/hero_it_security_split.png" 
-            />
-          </div>
+              {/* Background Image with Parallax & Zoom Effect (Mobile) */}
+              <div 
+                className={`absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[5000ms] ease-out md:hidden ${
+                  isActive ? 'scale-105 translate-y-0' : 'scale-100 translate-y-2'
+                }`}
+                style={{ backgroundImage: `url(${slide.mobileImageUrl || slide.imageUrl || slide.image})` }}
+              />
+              
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-black/45 z-10" />
+
+              {/* Slide Content Container */}
+              <div className="absolute inset-0 z-20 flex items-center justify-start text-white">
+                <div className="max-w-[1280px] mx-auto px-6 w-full text-left space-y-6">
+                  {/* Category Pill Badge */}
+                  <span className={`inline-flex items-center px-4.5 py-2 rounded-full bg-[#1453E3] text-white text-xs font-extrabold tracking-widest uppercase shadow-lg shadow-[#1453E3]/30 transition-all duration-700 delay-300 transform ${
+                    isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                  }`}>
+                    {slide.category || "Technology Solutions"}
+                  </span>
+
+                  {/* Heading */}
+                  <h1 className={`text-4xl md:text-5xl lg:text-[64px] font-extrabold leading-[1.1] tracking-tight max-w-[850px] transition-all duration-700 delay-500 transform ${
+                    isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+                  }`}>
+                    {slide.title || slide.heading}
+                  </h1>
+
+                  {/* Description */}
+                  <p className={`text-lg md:text-[20px] text-white/90 font-medium leading-relaxed max-w-[650px] transition-all duration-700 delay-700 transform ${
+                    isActive ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                  }`}>
+                    {slide.subtitle || slide.description}
+                  </p>
+
+                  {/* CTAs */}
+                  <div className={`flex flex-wrap gap-4 pt-4 transition-all duration-700 delay-900 transform ${
+                    isActive ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                  }`}>
+                    {slide.buttonText ? (
+                      <Link 
+                        to={slide.buttonLink || "/"}
+                        className="bg-gradient-to-r from-[#1453E3] to-[#004bca] hover:scale-105 text-white px-8 py-4 rounded-xl font-bold text-sm shadow-xl shadow-[#1453E3]/25 transition-all"
+                      >
+                        {slide.buttonText}
+                      </Link>
+                    ) : slide.ctaText1 ? (
+                      <Link 
+                        to={slide.ctaLink1 || "/"}
+                        className="bg-gradient-to-r from-[#1453E3] to-[#004bca] hover:scale-105 text-white px-8 py-4 rounded-xl font-bold text-sm shadow-xl shadow-[#1453E3]/25 transition-all"
+                      >
+                        {slide.ctaText1}
+                      </Link>
+                    ) : null}
+                    
+                    {(slide.ctaText2 || !slide.buttonText) && (
+                      <Link 
+                        to={slide.ctaLink2 || "/contact"}
+                        className="bg-white/10 hover:bg-white/20 text-white border border-white/30 hover:scale-105 px-8 py-4 rounded-xl font-bold text-sm transition-all backdrop-blur-sm"
+                      >
+                        {slide.ctaText2 || "Contact Us"}
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Left/Right Glassmorphism Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-6 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 shadow-lg group hidden md:block"
+        >
+          <svg className="w-6 h-6 transform rotate-180 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-6 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md transition-all active:scale-95 shadow-lg group hidden md:block"
+        >
+          <svg className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Bottom Center Dots - Pill Style */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5">
+          {activeBanners.map((_, index) => {
+            const isActive = index === currentSlide;
+            return (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  isActive 
+                    ? 'w-8 h-2.5 bg-[#1453E3]' 
+                    : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/70'
+                }`}
+              />
+            );
+          })}
         </div>
       </section>
 

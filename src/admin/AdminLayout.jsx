@@ -11,7 +11,8 @@ import {
   ShieldAlert,
   User,
   Menu,
-  X
+  X,
+  Image
 } from 'lucide-react';
 
 const AdminLayout = () => {
@@ -34,7 +35,8 @@ const AdminLayout = () => {
     { name: 'Products', path: '/admin/products', icon: Package },
     { name: 'Categories', path: '/admin/categories', icon: Tags },
     { name: 'Brands', path: '/admin/brands', icon: Award },
-    { name: 'Quotations', path: '/admin/quotations', icon: FileText }
+    { name: 'Quotations', path: '/admin/quotations', icon: FileText },
+    { name: 'Hero Banners', path: '/admin/banners', icon: Image }
   ];
 
   return (

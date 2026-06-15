@@ -54,6 +54,7 @@ import AdminProducts from './admin/AdminProducts';
 import AdminCategories from './admin/AdminCategories';
 import AdminBrands from './admin/AdminBrands';
 import AdminQuotations from './admin/AdminQuotations';
+import AdminBanners from './admin/AdminBanners';
 
 function App() {
   return (
@@ -76,6 +77,7 @@ function App() {
               <Route path="categories" element={<AdminCategories />} />
               <Route path="brands" element={<AdminBrands />} />
               <Route path="quotations" element={<AdminQuotations />} />
+              <Route path="banners" element={<AdminBanners />} />
             </Route>
 
             {/* Public Layout and Routes */}
