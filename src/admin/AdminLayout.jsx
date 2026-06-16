@@ -36,7 +36,7 @@ const AdminLayout = () => {
     { name: 'Categories', path: '/admin/categories', icon: Tags },
     { name: 'Brands', path: '/admin/brands', icon: Award },
     { name: 'Quotations', path: '/admin/quotations', icon: FileText },
-    { name: 'Hero Banners', path: '/admin/banners', icon: Image }
+    { name: 'Homepage Banners', path: '/admin/banners', icon: Image }
   ];
 
   return (
@@ -105,9 +105,8 @@ const AdminLayout = () => {
             </div>
             <div className="truncate">
               <span className="text-sm font-semibold text-white block leading-none truncate">
-                {currentUser?.email?.split('@')[0] || 'Admin User'}
+                admin
               </span>
-              <span className="text-xs text-slate-500 font-medium">Procurement Officer</span>
             </div>
           </div>
           <button
@@ -137,9 +136,6 @@ const AdminLayout = () => {
             </h1>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="text-[10px] sm:text-xs text-slate-500 font-semibold bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">
-              Environment: Production
-            </div>
           </div>
         </header>
 

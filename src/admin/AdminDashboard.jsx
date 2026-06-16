@@ -296,84 +296,46 @@ const AdminDashboard = () => {
       title: 'Total Products',
       value: stats.products,
       icon: Package,
-      color: 'bg-blue-500/10 text-blue-600 border-blue-500/20',
-      badge: 'Active & Inactive',
-      badgeColor: 'text-blue-500'
+      color: 'bg-slate-50 text-slate-600 border-slate-200'
     },
     {
       title: 'Total Categories',
       value: stats.categories,
       icon: Tags,
-      color: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
-      badge: 'Product Groupings',
-      badgeColor: 'text-emerald-500'
+      color: 'bg-slate-50 text-slate-600 border-slate-200'
     },
     {
       title: 'Total Brands',
       value: stats.brands,
       icon: Award,
-      color: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
-      badge: 'Security Partners',
-      badgeColor: 'text-amber-500'
+      color: 'bg-slate-50 text-slate-600 border-slate-200'
     },
     {
       title: 'Total Quotations',
       value: stats.quotations,
       icon: FileText,
-      color: 'bg-purple-500/10 text-purple-600 border-purple-500/20',
-      badge: 'Client Leads',
-      badgeColor: 'text-purple-500'
+      color: 'bg-slate-50 text-slate-600 border-slate-200'
     }
   ];
 
   return (
     <div className="space-y-8">
-      {/* Seeding Control Banner */}
-      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div>
-          <h3 className="text-sm font-bold text-slate-800">Seed Equipment Database</h3>
-          <p className="text-xs text-slate-400 font-semibold mt-1">Pre-populate standard Hikvision, Dahua, CP Plus & ZKTeco catalog lists</p>
-        </div>
-        <button
-          onClick={seedProductsData}
-          disabled={seeding}
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white rounded-lg text-xs font-semibold shadow-sm transition-all flex items-center gap-2"
-        >
-          {seeding ? 'Seeding...' : 'Seed Catalog Data'}
-        </button>
-      </div>
-
-      {seedStatus && (
-        <div className="bg-blue-50 border border-blue-200 text-blue-800 text-xs p-3.5 rounded-lg font-bold">
-          {seedStatus}
-        </div>
-      )}
-
       {/* Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((card, idx) => {
           const Icon = card.icon;
           return (
-            <div key={idx} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
-              <div className="flex justify-between items-start">
-                <div>
-                  <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider block mb-1">
-                    {card.title}
-                  </span>
-                  <span className="text-3xl font-extrabold text-slate-800">
-                    {card.value}
-                  </span>
-                </div>
-                <div className={`p-3 rounded-lg border ${card.color}`}>
-                  <Icon className="w-6 h-6" />
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium">
-                <span className="text-slate-500">{card.badge}</span>
-                <span className="flex items-center text-emerald-600">
-                  <TrendingUp className="w-3.5 h-3.5 mr-1" />
-                  +12% this week
+            <div key={idx} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+              <div className="space-y-1">
+                <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider block">
+                  {card.title}
                 </span>
+                <span className="text-3xl font-extrabold text-slate-800 block">
+                  {card.value}
+                </span>
+              </div>
+              <div className={`p-3 rounded-lg border ${card.color}`}>
+                <Icon className="w-5 h-5" />
               </div>
             </div>
           );
@@ -412,7 +374,7 @@ const AdminDashboard = () => {
                 <tr className="border-b border-slate-100 text-slate-400 font-semibold text-xs uppercase bg-slate-50/50">
                   <th className="py-3 px-4">Image</th>
                   <th className="py-3 px-4">Product Name</th>
-                  <th className="py-3 px-4">Price</th>
+                  <th className="py-3 px-4 text-right">Price</th>
                   <th className="py-3 px-4">Stock</th>
                 </tr>
               </thead>
@@ -436,7 +398,7 @@ const AdminDashboard = () => {
                       <td className="py-3 px-4 font-semibold text-slate-700 max-w-xs truncate">
                         {p.productName}
                       </td>
-                      <td className="py-3 px-4 font-bold text-slate-900">
+                      <td className="py-3 px-4 font-bold text-slate-900 text-right">
                         ${(p.offerPrice > 0 ? p.offerPrice : p.price).toFixed(2)}
                       </td>
                       <td className="py-3 px-4">

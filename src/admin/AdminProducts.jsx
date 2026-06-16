@@ -233,7 +233,7 @@ const AdminProducts = () => {
                 <th className="py-3 px-4">Image</th>
                 <th className="py-3 px-4">Product Details</th>
                 <th className="py-3 px-4">Category & Brand</th>
-                <th className="py-3 px-4">Price</th>
+                <th className="py-3 px-4 text-right">Price</th>
                 <th className="py-3 px-4">Stock</th>
                 <th className="py-3 px-4">Status</th>
                 <th className="py-3 px-4 text-right">Actions</th>
@@ -268,9 +268,9 @@ const AdminProducts = () => {
                         {p.brand}
                       </span>
                     </td>
-                    <td className="py-4 px-4">
+                    <td className="py-4 px-4 text-right">
                       {p.offerPrice > 0 ? (
-                        <div className="flex flex-col">
+                        <div className="flex flex-col items-end">
                           <span className="text-blue-600 font-bold">${p.offerPrice.toFixed(2)}</span>
                           <span className="text-[10px] text-slate-400 line-through">${p.price.toFixed(2)}</span>
                         </div>

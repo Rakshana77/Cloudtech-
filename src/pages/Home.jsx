@@ -203,20 +203,12 @@ const Home = () => {
                 isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
               }`}
             >
-              {/* Background Image with Parallax & Zoom Effect (Desktop) */}
+              {/* Background Image with Parallax & Zoom Effect (Single Responsive Image) */}
               <div 
-                className={`absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[5000ms] ease-out hidden md:block ${
+                className={`absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[5000ms] ease-out ${
                   isActive ? 'scale-105 translate-y-0' : 'scale-100 translate-y-2'
                 }`}
                 style={{ backgroundImage: `url(${slide.imageUrl || slide.image})` }}
-              />
-
-              {/* Background Image with Parallax & Zoom Effect (Mobile) */}
-              <div 
-                className={`absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[5000ms] ease-out md:hidden ${
-                  isActive ? 'scale-105 translate-y-0' : 'scale-100 translate-y-2'
-                }`}
-                style={{ backgroundImage: `url(${slide.mobileImageUrl || slide.imageUrl || slide.image})` }}
               />
               
               {/* Dark Overlay */}
