@@ -13,6 +13,8 @@ const ProductCard = ({ product }) => {
       <Link to={`/product/${product.id}`} className="relative h-56 overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center p-4">
         <img 
           alt={product.productName} 
+          title={product.productName}
+          loading="lazy"
           className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500" 
           src={product.image || "https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=200"} 
         />
@@ -89,7 +91,7 @@ const ProductCard = ({ product }) => {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition-colors space-x-1.5 shadow-sm"
+              className="w-full flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition-colors space-x-1.5 shadow-sm h-11 min-h-[44px]"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               <span>Get Quote on WhatsApp</span>
@@ -98,7 +100,7 @@ const ProductCard = ({ product }) => {
             {/* Quick View Button */}
             <Link
               to={`/product/${product.id}`}
-              className="w-full flex items-center justify-center py-2 border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-lg transition-colors bg-white"
+              className="w-full flex items-center justify-center border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-lg transition-colors bg-white h-11 min-h-[44px]"
             >
               <span>Quick View</span>
             </Link>

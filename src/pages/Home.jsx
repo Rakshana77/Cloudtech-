@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { productService } from '../services/productService';
 import { brandService } from '../services/brandService';
 import { heroBannerService } from '../services/heroBannerService';
+import { useSEO } from '../hooks/useSEO';
 import { 
   ArrowRight, 
   ShieldCheck, 
@@ -96,6 +97,39 @@ const getBrandBranding = (name) => {
 };
 
 const Home = () => {
+  useSEO({
+    title: 'Cloud Info Tech Shop | Laptop, Desktop & CCTV Solutions',
+    description: 'Cloud Info Tech Shop provides professional laptop sales, desktop computers, CCTV cameras, security systems, networking solutions, computer accessories and IT services for Singapore businesses and homes.',
+    keywords: 'Laptop Sales, Laptop Repair, Desktop Sales, Desktop Repair, Gaming Laptops, Business Laptops, Desktop Computers, CCTV Cameras, Security Cameras, Bullet Cameras, Dome Cameras, PTZ Cameras, NVR, DVR, CCTV Accessories, Networking Solutions, IT Solutions, Computer Accessories, Laptop Accessories, Office Computers, Business Technology Solutions, Cloud Info Tech Shop',
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Cloud Info Tech Shop",
+      "image": "https://cloudinfotechshop.com/images/logo.png",
+      "telephone": "+6567471104",
+      "email": "sales@cloudinfotechshop.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "10 Ubi Crescent, #04-32",
+        "addressLocality": "Singapore",
+        "postalCode": "408564",
+        "addressCountry": "SG"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    }
+  });
+
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -474,7 +508,7 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {loading ? (
             Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="animate-pulse bg-white border h-[460px] rounded-[18px]"></div>

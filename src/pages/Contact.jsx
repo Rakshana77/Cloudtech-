@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, MessageSquare, Send, CheckCircle2 } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
 
 const Contact = () => {
   const [name, setName] = useState('');
@@ -15,57 +16,90 @@ const Contact = () => {
     setMsg('');
   };
 
+  useSEO({
+    title: 'Contact Cloud Info Tech | Laptop Repairs & CCTV Installation Singapore',
+    description: 'Get in touch with Cloud Info Tech Shop. Contact us for Singapore premium laptop repairs, computer sales, CCTV installation, and business IT solutions.',
+    keywords: 'Cloud Info Tech, Laptop Repair Singapore, CCTV Installation Singapore, Business IT Solutions, Computer Sales',
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Cloud Info Tech Shop",
+      "image": "/images/logo.png",
+      "telephone": "+65 6747 1104",
+      "email": "sales@cloudinfotechshop.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "10 Ubi Crescent, #04-32",
+        "addressLocality": "Singapore",
+        "postalCode": "408564",
+        "addressCountry": "SG"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    }
+  });
+
   return (
-    <div className="bg-slate-50 font-sans min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="bg-slate-50 font-sans min-h-screen py-10 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         
         {/* Title Banner */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h1 className="font-h1 tracking-tight">Contact Cloud Info Tech Shop</h1>
-          <p className="font-subheading">
+          <h1 className="font-h1 tracking-tight text-2xl sm:text-4xl font-extrabold text-slate-900">Contact Cloud Info Tech Shop</h1>
+          <p className="font-subheading text-sm sm:text-base text-slate-500">
             Contact Singapore's Premium Security Systems Distributor & Integrator. We supply and support products from leading laptop, networking and security manufacturers.
           </p>
         </div>
 
         {/* Contact Info Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Card 1 */}
-          <div className="bg-white p-6 rounded-[18px] border border-[#E2E8F0] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:scale-[1.05] hover:-translate-y-1.5 hover:shadow-lg hover:border-blue-600/30 transition-all duration-300 flex flex-col items-center text-center space-y-4">
+          <div className="bg-white p-6 rounded-[18px] border border-[#E2E8F0] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:shadow-lg hover:border-blue-600/30 transition-all duration-300 flex flex-col items-center text-center space-y-4">
             <div className="p-3 bg-blue-50 border border-blue-100 rounded-lg text-blue-600">
               <Phone className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-h3 text-lg mb-1">Direct Phone</h3>
+              <h3 className="font-h3 text-lg mb-1 font-bold">Direct Phone</h3>
               <p className="text-xs text-slate-500">Mon-Fri 9am to 6pm</p>
-              <a href="tel:+6567471104" className="text-sm font-bold text-blue-600 block mt-2 hover:underline">
+              <a href="tel:+6567471104" className="text-sm font-bold text-blue-600 block mt-2 hover:underline min-h-[44px] flex items-center justify-center">
                 +65 6747 1104
               </a>
             </div>
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white p-6 rounded-[18px] border border-[#E2E8F0] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:scale-[1.05] hover:-translate-y-1.5 hover:shadow-lg hover:border-blue-600/30 transition-all duration-300 flex flex-col items-center text-center space-y-4">
+          <div className="bg-white p-6 rounded-[18px] border border-[#E2E8F0] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:shadow-lg hover:border-blue-600/30 transition-all duration-300 flex flex-col items-center text-center space-y-4">
             <div className="p-3 bg-blue-50 border border-blue-100 rounded-lg text-blue-600">
               <Mail className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-h3 text-lg mb-1">Email Support</h3>
+              <h3 className="font-h3 text-lg mb-1 font-bold">Email Support</h3>
               <p className="text-xs text-slate-500">24/7 client dispatch</p>
-              <a href="mailto:sales@cloudinfotechshop.com" className="text-sm font-bold text-blue-600 block mt-2 hover:underline">
+              <a href="mailto:sales@cloudinfotechshop.com" className="text-sm font-bold text-blue-600 block mt-2 hover:underline min-h-[44px] flex items-center justify-center">
                 sales@cloudinfotechshop.com
               </a>
             </div>
           </div>
 
           {/* Card 3 */}
-          <div className="bg-white p-6 rounded-[18px] border border-[#E2E8F0] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:scale-[1.05] hover:-translate-y-1.5 hover:shadow-lg hover:border-blue-600/30 transition-all duration-300 flex flex-col items-center text-center space-y-4">
+          <div className="bg-white p-6 rounded-[18px] border border-[#E2E8F0] shadow-[0_8px_25px_rgba(15,23,42,0.06)] hover:shadow-lg hover:border-blue-600/30 transition-all duration-300 flex flex-col items-center text-center space-y-4">
             <div className="p-3 bg-blue-50 border border-blue-100 rounded-lg text-blue-600">
               <MapPin className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-h3 text-lg mb-1">Headquarters</h3>
+              <h3 className="font-h3 text-lg mb-1 font-bold">Headquarters</h3>
               <p className="text-xs text-slate-500">Scoping & inventory center</p>
-              <span className="text-xs text-slate-700 block mt-2 font-medium">
+              <span className="text-xs text-slate-700 block mt-2 font-medium min-h-[44px] flex items-center justify-center">
                 10 Ubi Crescent, #04-32, Singapore 408564
               </span>
             </div>
@@ -76,7 +110,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           
           {/* Quick Msg Form */}
-          <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
             {sent ? (
               <div className="flex flex-col items-center justify-center text-center h-full space-y-4 py-8">
                 <div className="p-3 bg-emerald-100 rounded-full text-emerald-600 border border-emerald-200">
@@ -88,7 +122,7 @@ const Contact = () => {
                 </p>
                 <button
                   onClick={() => setSent(false)}
-                  className="mt-4 px-4 py-2 border border-slate-300 text-slate-700 hover:bg-slate-50 rounded-lg text-xs font-semibold"
+                  className="mt-4 px-4 py-2 border border-slate-300 text-slate-700 hover:bg-slate-50 rounded-lg text-xs font-semibold min-h-[44px] flex items-center justify-center"
                 >
                   Send another message
                 </button>
@@ -107,7 +141,7 @@ const Contact = () => {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="block w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-800 text-xs focus:ring-2 focus:ring-blue-500"
+                    className="block w-full px-3 py-3 border border-slate-300 rounded-lg text-slate-800 text-xs focus:ring-2 focus:ring-blue-500 min-h-[44px]"
                     placeholder="e.g. Rachel Tan"
                   />
                 </div>
@@ -119,7 +153,7 @@ const Contact = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="block w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-800 text-xs focus:ring-2 focus:ring-blue-500"
+                    className="block w-full px-3 py-3 border border-slate-300 rounded-lg text-slate-800 text-xs focus:ring-2 focus:ring-blue-500 min-h-[44px]"
                     placeholder="rachel@domain.com"
                   />
                 </div>
@@ -131,14 +165,14 @@ const Contact = () => {
                     value={msg}
                     onChange={(e) => setMsg(e.target.value)}
                     rows="4"
-                    className="block w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-800 text-xs focus:ring-2 focus:ring-blue-500"
+                    className="block w-full px-3 py-3 border border-slate-300 rounded-lg text-slate-800 text-xs focus:ring-2 focus:ring-blue-500 min-h-[44px]"
                     placeholder="Describe your inquiry..."
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center py-2.5 px-4 bg-slate-900 hover:bg-slate-855 text-white rounded-lg text-xs font-bold transition-all shadow"
+                  className="w-full flex items-center justify-center py-3 px-4 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold transition-all shadow min-h-[44px]"
                 >
                   <Send className="w-3.5 h-3.5 mr-2" />
                   Submit Inquiry
@@ -148,7 +182,7 @@ const Contact = () => {
           </div>
 
           {/* Interactive Map Visual */}
-          <div className="bg-slate-900 text-slate-400 rounded-2xl p-8 border border-slate-800 flex flex-col justify-between overflow-hidden relative min-h-[300px]">
+          <div className="bg-slate-900 text-slate-400 rounded-2xl p-6 sm:p-8 border border-slate-800 flex flex-col justify-between overflow-hidden relative min-h-[350px] space-y-6 lg:space-y-0">
             <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay"></div>
             
             <div className="relative space-y-4">
@@ -160,7 +194,7 @@ const Contact = () => {
             </div>
 
             {/* Custom stylized mini map grid UI representation */}
-            <div className="h-32 border border-slate-800/80 rounded-xl relative overflow-hidden bg-slate-950 flex flex-col justify-center items-center">
+            <div className="h-32 border border-slate-800/80 rounded-xl relative overflow-hidden bg-slate-950 flex flex-col justify-center items-center my-4">
               <div className="grid grid-cols-12 gap-1 w-full h-full p-2 opacity-25">
                 {Array.from({ length: 48 }).map((_, i) => (
                   <div key={i} className="border border-slate-800 rounded-sm"></div>
@@ -177,7 +211,7 @@ const Contact = () => {
             </div>
 
             <div className="flex items-center space-x-2 text-xs font-medium relative">
-              <Clock className="w-4 h-4 text-blue-500" />
+              <Clock className="w-4 h-4 text-blue-500 flex-shrink-0" />
               <span>Standard Distribution Hours: 09:00 - 18:00 (GMT+8)</span>
             </div>
           </div>

@@ -35,7 +35,7 @@ const Login = () => {
             <img 
               src="/images/logo.png" 
               alt="Cloud Info Tech Shop" 
-              className="h-12 object-contain brightness-0 invert"
+              className="h-12 object-contain"
             />
           </div>
           <h2 className="text-2.5xl font-bold text-white tracking-tight">Admin Control Center</h2>

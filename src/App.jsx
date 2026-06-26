@@ -1,38 +1,8 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import { MessageCircle } from 'lucide-react';
-
-const PageTitleHandler = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    let title = 'Cloud Info Tech Shop | Laptop Sales & CCTV Security Systems';
-    const path = location.pathname;
-    
-    if (path === '/products') {
-      title = 'Equipment Catalog | Cloud Info Tech Shop';
-    } else if (path === '/contact') {
-      title = 'Contact Us | Cloud Info Tech Shop';
-    } else if (path === '/request-quote') {
-      title = 'Request a Quote | Cloud Info Tech Shop';
-    } else if (path === '/cart') {
-      title = 'Shopping Cart | Cloud Info Tech Shop';
-    } else if (path === '/checkout') {
-      title = 'Checkout | Cloud Info Tech Shop';
-    } else if (path.startsWith('/product/')) {
-      title = 'Product Details | Cloud Info Tech Shop';
-    } else if (path.startsWith('/admin')) {
-      title = 'Admin Panel | Cloud Info Tech Shop';
-    }
-    
-    document.title = title;
-  }, [location]);
-
-  return null;
-};
-
 
 // Public components & pages
 import Navbar from './components/Navbar';
@@ -61,7 +31,6 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <Router>
-          <PageTitleHandler />
           <Routes>
             {/* Admin Routes with distinct layout */}
             <Route path="/admin/login" element={<Login />} />

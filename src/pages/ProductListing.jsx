@@ -6,8 +6,33 @@ import { brandService } from '../services/brandService';
 import ProductCard from '../components/ProductCard';
 import FilterSidebar from '../components/FilterSidebar';
 import { ChevronRight, Search } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
 
 const ProductListing = () => {
+  useSEO({
+    title: 'Laptop, Desktop & CCTV Products | Cloud Info Tech Shop',
+    description: 'Explore the Cloud Info Tech Shop catalog of premium business laptops, high-performance gaming rigs, dome and bullet security cameras, NVR hubs, access control devices, and networking hardware.',
+    keywords: 'Laptop Sales, Desktop Sales, CCTV Cameras, Security Systems, dome cameras, bullet cameras, NVR, Access Control, Cloud Info Tech Shop products',
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://cloudinfotechshop.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Products",
+          "item": "https://cloudinfotechshop.com/products"
+        }
+      ]
+    }
+  });
+
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get('tab') || 'laptops';
   const initialCategory = searchParams.get('category') || 'All';
@@ -215,7 +240,7 @@ const ProductListing = () => {
               <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}

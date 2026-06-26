@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { productService } from '../services/productService';
 import { useCart } from '../context/CartContext';
+import { useSEO } from '../hooks/useSEO';
 import { 
   ChevronRight, 
   ShieldCheck, 
@@ -49,6 +50,36 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
+  // Dynamic SEO Setup using the product information
+  useSEO(
+    product ? {
+      title: `${product.productName} | ${product.brand} Laptop & CCTV Repair/Sales`,
+      description: `${product.description || `Purchase ${product.productName} by ${product.brand} at Cloud Info Tech Shop. Premium IT & security cameras installation and support in Singapore.`}`,
+      keywords: `${product.productName}, ${product.brand}, Laptop Sales, CCTV Cameras, Security Cameras, Singapore IT, Computer Accessories`,
+      ogImage: product.image || '/images/logo.png',
+      schema: {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": product.productName,
+        "image": product.image ? [product.image] : [],
+        "description": product.description || `Professional grade ${product.productName} equipment.`,
+        "sku": product.sku || product.id,
+        "brand": {
+          "@type": "Brand",
+          "name": product.brand
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": window.location.href,
+          "priceCurrency": "SGD",
+          "price": product.offerPrice > 0 ? product.offerPrice : product.price,
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    } : {}
+  );
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[70vh]">
@@ -62,7 +93,7 @@ const ProductDetails = () => {
       <div className="max-w-7xl mx-auto px-6 py-20 text-center space-y-4">
         <h2 className="text-xl font-bold text-slate-800">Security Asset Not Found</h2>
         <p className="text-xs text-slate-500 font-medium">This equipment item does not exist or has been decommissioned.</p>
-        <Link to="/products" className="inline-flex px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold shadow">
+        <Link to="/products" className="inline-flex px-4 py-2.5 bg-blue-600 text-white rounded-lg text-xs font-bold shadow min-h-[44px] items-center justify-center">
           Back to Catalog
         </Link>
       </div>
@@ -76,13 +107,8 @@ const ProductDetails = () => {
   const discount = product.offerPrice > 0 ? Math.round(((product.price - product.offerPrice) / product.price) * 100) : 0;
   const currentPrice = product.offerPrice > 0 ? product.offerPrice : product.price;
 
-  const handleBuyNow = () => {
-    addToCart(product, quantity);
-    navigate('/cart');
-  };
-
   return (
-    <main className="max-w-7xl mx-auto pt-10 pb-20 px-6 font-sans space-y-12">
+    <main className="max-w-7xl mx-auto pt-6 pb-20 px-4 sm:px-6 font-sans space-y-8">
       {/* Breadcrumbs */}
       <nav className="flex items-center space-x-1.5 text-[10px] font-bold text-slate-400 uppercase">
         <Link to="/products" className="hover:text-blue-600">Catalog</Link>
@@ -93,15 +119,15 @@ const ProductDetails = () => {
       </nav>
 
       {/* Main product card details */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-white p-4 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
         
         {/* Gallery / Images */}
-        <div className="lg:col-span-7 space-y-4">
-          <div className="h-[650px] w-full bg-white border border-slate-200/80 rounded-xl flex items-center justify-center p-6 relative overflow-hidden">
+        <div className="lg:col-span-7 space-y-4 w-full">
+          <div className="h-[300px] sm:h-[450px] lg:h-[650px] w-full bg-white border border-slate-200/80 rounded-xl flex items-center justify-center p-4 sm:p-6 relative overflow-hidden">
             <img 
               src={activeImage || "https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=400"} 
               alt={product.productName} 
-              className="w-full h-full object-contain transition-transform duration-350 ease-out hover:scale-[1.04] cursor-zoom-in" 
+              className="max-h-full max-w-full object-contain transition-transform duration-350 ease-out hover:scale-[1.04] cursor-zoom-in" 
             />
           </div>
           
@@ -114,6 +140,7 @@ const ProductDetails = () => {
                   className={`w-16 h-16 border rounded-lg bg-slate-50 overflow-hidden flex items-center justify-center p-1 flex-shrink-0 transition-all ${
                     activeImage === product.image ? 'border-blue-600 ring-2 ring-blue-500/20' : 'border-slate-200 hover:border-slate-300'
                   }`}
+                  style={{ minWidth: '44px', minHeight: '44px' }}
                 >
                   <img src={product.image} className="max-h-full max-w-full object-contain" alt="main" />
                 </button>
@@ -125,6 +152,7 @@ const ProductDetails = () => {
                   className={`w-16 h-16 border rounded-lg bg-slate-50 overflow-hidden flex items-center justify-center p-1 flex-shrink-0 transition-all ${
                     activeImage === url ? 'border-blue-600 ring-2 ring-blue-500/20' : 'border-slate-200 hover:border-slate-300'
                   }`}
+                  style={{ minWidth: '44px', minHeight: '44px' }}
                 >
                   <img src={url} className="max-h-full max-w-full object-contain" alt={`gallery-${idx}`} />
                 </button>
@@ -134,7 +162,7 @@ const ProductDetails = () => {
         </div>
 
         {/* Product Meta & Configuration Options */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-6 w-full">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs text-blue-600 font-extrabold uppercase bg-blue-50 border border-blue-100 px-3 py-0.5 rounded">
@@ -146,7 +174,7 @@ const ProductDetails = () => {
               </div>
             </div>
             
-            <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight leading-tight">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-800 tracking-tight leading-tight">
               {product.productName}
             </h1>
             <span className="text-xs text-slate-400 font-mono block">SKU Code: {product.sku}</span>
@@ -155,14 +183,14 @@ const ProductDetails = () => {
           <div className="flex items-baseline space-x-3 py-2 border-y border-slate-100">
             {product.offerPrice > 0 ? (
               <>
-                <span className="text-3xl font-extrabold text-blue-600">${product.offerPrice.toFixed(2)}</span>
+                <span className="text-2xl sm:text-3xl font-extrabold text-blue-600">${product.offerPrice.toFixed(2)}</span>
                 <span className="text-sm text-slate-400 line-through">${product.price.toFixed(2)}</span>
                 <span className="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-100">
                   Save {discount}%
                 </span>
               </>
             ) : (
-              <span className="text-3xl font-extrabold text-slate-800">${product.price.toFixed(2)}</span>
+              <span className="text-2xl sm:text-3xl font-extrabold text-slate-800">${product.price.toFixed(2)}</span>
             )}
           </div>
 
@@ -171,7 +199,7 @@ const ProductDetails = () => {
           </p>
 
           {/* Lead Generation / Scoping Contact Card */}
-          <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm space-y-6">
+          <div className="bg-slate-50 p-4 sm:p-6 rounded-xl border border-slate-200 shadow-sm space-y-6">
             <div className="space-y-1">
               <h3 className="font-bold text-[#0F172A] text-base">Interested in this product?</h3>
               <p className="text-xs text-slate-500 font-semibold leading-relaxed">
@@ -187,7 +215,7 @@ const ProductDetails = () => {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition-colors space-x-2 shadow-sm"
+                className="w-full flex items-center justify-center py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition-colors space-x-2 shadow-sm min-h-[44px]"
               >
                 <PhoneCall className="w-4 h-4" />
                 <span>WhatsApp Us</span>
@@ -196,7 +224,7 @@ const ProductDetails = () => {
               {/* Call Sales Team (Outline Button) */}
               <a
                 href="tel:+6567471104"
-                className="w-full flex items-center justify-center py-3 border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-lg transition-colors space-x-2 bg-white"
+                className="w-full flex items-center justify-center py-3 border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-lg transition-colors space-x-2 bg-white min-h-[44px]"
               >
                 <PhoneCall className="w-4 h-4 text-slate-400" />
                 <span>Call Sales Team (+65 6747 1104)</span>
@@ -205,14 +233,14 @@ const ProductDetails = () => {
               {/* Request Quotation (Primary Blue Button) */}
               <Link
                 to="/request-quote"
-                className="w-full flex items-center justify-center py-3 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors shadow-sm"
+                className="w-full flex items-center justify-center py-3 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors shadow-sm min-h-[44px]"
               >
                 <span>Request Quotation</span>
               </Link>
             </div>
 
             {/* Checklist details */}
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 pt-4 border-t border-slate-200 text-[10px] font-bold text-slate-600">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 pt-4 border-t border-slate-200 text-[10px] font-bold text-slate-600">
               <div className="flex items-center space-x-1">
                 <span className="text-blue-600 text-xs">✓</span>
                 <span>Installation Available</span>
@@ -232,18 +260,18 @@ const ProductDetails = () => {
             </div>
           </div>
 
-
         </div>
       </div>
 
       {/* Tabs description */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-8">
         <div className="flex space-x-8 border-b border-slate-100 pb-4 mb-6 overflow-x-auto">
           <button 
             onClick={() => setActiveTab('description')} 
             className={`text-xs font-bold uppercase tracking-wider pb-2 transition-all ${
               activeTab === 'description' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-slate-400 hover:text-slate-600'
             }`}
+            style={{ minHeight: '44px' }}
           >
             Equipment Details
           </button>
@@ -252,6 +280,7 @@ const ProductDetails = () => {
             className={`text-xs font-bold uppercase tracking-wider pb-2 transition-all ${
               activeTab === 'specs' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-slate-400 hover:text-slate-600'
             }`}
+            style={{ minHeight: '44px' }}
           >
             Technical Specs
           </button>
