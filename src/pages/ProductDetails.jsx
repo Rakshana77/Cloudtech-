@@ -183,7 +183,7 @@ const ProductDetails = () => {
               {/* WhatsApp Us (Green Button) */}
               <a
                 href={`https://wa.me/6581234567?text=${encodeURIComponent(
-                  `Hello Cloud Info Tech,\n\nI am interested in:\n\n${product.productName}\n\nPlease share:\n\n* Pricing\n* Installation charges\n* Warranty details\n\nThank you.`
+                  `Hello Cloud Info Tech Shop,\n\nI am interested in:\n\n${product.productName}\n\nPlease share:\n\n* Pricing\n* Installation charges\n* Warranty details\n\nThank you.`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

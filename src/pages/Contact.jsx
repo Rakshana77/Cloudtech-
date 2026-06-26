@@ -21,7 +21,7 @@ const Contact = () => {
         
         {/* Title Banner */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h1 className="font-h1 tracking-tight">Contact Cloud Info Tech</h1>
+          <h1 className="font-h1 tracking-tight">Contact Cloud Info Tech Shop</h1>
           <p className="font-subheading">
             Contact Singapore's Premium Security Systems Distributor & Integrator. We supply and support products from leading laptop, networking and security manufacturers.
           </p>
@@ -51,8 +51,8 @@ const Contact = () => {
             <div>
               <h3 className="font-h3 text-lg mb-1">Email Support</h3>
               <p className="text-xs text-slate-500">24/7 client dispatch</p>
-              <a href="mailto:sales@cloudinfotech.com.sg" className="text-sm font-bold text-blue-600 block mt-2 hover:underline">
-                sales@cloudinfotech.com.sg
+              <a href="mailto:sales@cloudinfotechshop.com" className="text-sm font-bold text-blue-600 block mt-2 hover:underline">
+                sales@cloudinfotechshop.com
               </a>
             </div>
           </div>

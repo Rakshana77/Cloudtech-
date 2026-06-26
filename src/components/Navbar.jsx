@@ -36,13 +36,12 @@ const Navbar = () => {
         <nav className="flex items-center justify-between px-6 w-full max-w-[1280px] mx-auto h-full">
           {/* Logo & Tagline (Left Column - 30% Width) */}
           <div className="w-[30%] flex justify-start">
-            <a href="/" onClick={handleLogoClick} className="flex flex-col text-left py-2 group">
-              <span className="text-[26px] lg:text-[28px] font-extrabold tracking-tight text-[#0F172A] leading-tight transition-colors group-hover:text-[#1453E3]">
-                Cloud<span className="text-[#1453E3] group-hover:text-[#0F172A]">Infotech</span>
-              </span>
-              <span className="text-[10px] lg:text-xs font-semibold text-[#475569] uppercase tracking-widest leading-none mt-1">
-                Laptop Sales • Security Systems
-              </span>
+            <a href="/" onClick={handleLogoClick} className="flex items-center text-left py-1 group">
+              <img 
+                src="/images/logo.png" 
+                alt="Cloud Info Tech Shop" 
+                className="h-12 md:h-14 object-contain"
+              />
             </a>
           </div>
 

@@ -23,7 +23,7 @@ const AdminBanners = () => {
   // Preview state
   const [previewBanner, setPreviewBanner] = useState(null);
 
-  const referencePrompt = "Ultra-premium enterprise technology hero banner for Cloud Info Tech. Showcase professional laptops, networking equipment, CCTV surveillance cameras, business technology infrastructure, modern office environment, blue corporate branding, realistic lighting, premium commercial website style, large negative space for headings, ultra realistic, enterprise IT solutions, security systems, modern technology company, clean composition, 1920x1080 resolution.";
+  const referencePrompt = "Ultra-premium enterprise technology hero banner for Cloud Info Tech Shop. Showcase professional laptops, networking equipment, CCTV surveillance cameras, business technology infrastructure, modern office environment, blue corporate branding, realistic lighting, premium commercial website style, large negative space for headings, ultra realistic, enterprise IT solutions, security systems, modern technology company, clean composition, 1920x1080 resolution.";
 
   useEffect(() => {
     fetchBanners();

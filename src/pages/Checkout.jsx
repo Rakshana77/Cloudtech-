@@ -218,7 +218,7 @@ const Checkout = () => {
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-start space-x-3">
               <ShieldCheck className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
               <div className="text-[10px] text-slate-500 leading-relaxed font-semibold">
-                By purchasing, you authorize Cloud Info Tech to trigger automated hardware warranties matching our logistics depot.
+                By purchasing, you authorize Cloud Info Tech Shop to trigger automated hardware warranties matching our logistics depot.
               </div>
             </div>
           </aside>

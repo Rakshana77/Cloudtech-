@@ -50,7 +50,7 @@ const RequestQuote = () => {
           <div className="space-y-6">
             <div className="flex items-center space-x-3 text-blue-500">
               <ShieldCheck className="w-8 h-8" />
-              <span className="font-extrabold tracking-tight text-xl text-white">Cloud Info Tech</span>
+              <span className="font-extrabold tracking-tight text-xl text-white">Cloud Info Tech Shop</span>
             </div>
             <div className="space-y-3">
               <h3 className="font-h3 text-lg sm:text-xl !text-white">Request a System Quote</h3>
@@ -66,7 +66,7 @@ const RequestQuote = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-blue-500" />
-                <span>sales@cloudinfotech.com.sg</span>
+                <span>sales@cloudinfotechshop.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Building className="w-4 h-4 text-blue-500" />
@@ -76,7 +76,7 @@ const RequestQuote = () => {
           </div>
 
           <div className="text-[10px] text-slate-500 font-semibold border-t border-slate-800 pt-6 mt-8">
-            © 2026 Cloud Info Tech Pte Ltd. All Rights Reserved.
+            © 2026 Cloud Info Tech Shop. All Rights Reserved.
           </div>
         </div>
 

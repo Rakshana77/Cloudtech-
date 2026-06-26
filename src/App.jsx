@@ -8,23 +8,23 @@ const PageTitleHandler = () => {
   const location = useLocation();
 
   useEffect(() => {
-    let title = 'Cloud Info Tech | Laptop Sales & CCTV Security Systems';
+    let title = 'Cloud Info Tech Shop | Laptop Sales & CCTV Security Systems';
     const path = location.pathname;
     
     if (path === '/products') {
-      title = 'Equipment Catalog | Cloud Info Tech';
+      title = 'Equipment Catalog | Cloud Info Tech Shop';
     } else if (path === '/contact') {
-      title = 'Contact Us | Cloud Info Tech';
+      title = 'Contact Us | Cloud Info Tech Shop';
     } else if (path === '/request-quote') {
-      title = 'Request a Quote | Cloud Info Tech';
+      title = 'Request a Quote | Cloud Info Tech Shop';
     } else if (path === '/cart') {
-      title = 'Shopping Cart | Cloud Info Tech';
+      title = 'Shopping Cart | Cloud Info Tech Shop';
     } else if (path === '/checkout') {
-      title = 'Checkout | Cloud Info Tech';
+      title = 'Checkout | Cloud Info Tech Shop';
     } else if (path.startsWith('/product/')) {
-      title = 'Product Details | Cloud Info Tech';
+      title = 'Product Details | Cloud Info Tech Shop';
     } else if (path.startsWith('/admin')) {
-      title = 'Admin Panel | Cloud Info Tech';
+      title = 'Admin Panel | Cloud Info Tech Shop';
     }
     
     document.title = title;

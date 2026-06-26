@@ -31,11 +31,15 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-slate-900 px-4">
       <div className="max-w-md w-full space-y-8 bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-2xl">
         <div className="text-center">
-          <div className="inline-flex items-center justify-center p-3 bg-blue-600/10 rounded-full border border-blue-500/20 mb-4">
-            <ShieldCheck className="h-10 w-10 text-blue-500" />
+          <div className="inline-flex items-center justify-center mb-4">
+            <img 
+              src="/images/logo.png" 
+              alt="Cloud Info Tech Shop" 
+              className="h-12 object-contain brightness-0 invert"
+            />
           </div>
-          <h2 className="text-3xl font-bold text-white tracking-tight">Admin Control Center</h2>
-          <p className="mt-2 text-sm text-slate-400">Cloud Info Tech Portal</p>
+          <h2 className="text-2.5xl font-bold text-white tracking-tight">Admin Control Center</h2>
+          <p className="mt-2 text-sm text-slate-400">Portal Access</p>
         </div>
 
         {error && (
@@ -60,7 +64,7 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-lg bg-slate-950 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
-                  placeholder="admin@cloudinfotech.com"
+                  placeholder="admin@cloudinfotechshop.com"
                 />
               </div>
             </div>

@@ -8,8 +8,12 @@ const Footer = () => {
       <div className="py-20 px-6 max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 text-left">
         {/* Column 1: Company About */}
         <div className="space-y-6 lg:col-span-1">
-          <Link to="/" className="text-2xl font-extrabold text-white hover:opacity-90 transition-opacity block w-fit">
-            Cloud<span className="text-[#1453E3]">Infotech</span>
+          <Link to="/" className="hover:opacity-90 transition-opacity block w-fit">
+            <img 
+              src="/images/logo.png" 
+              alt="Cloud Info Tech Shop" 
+              className="h-10 md:h-12 object-contain brightness-0 invert"
+            />
           </Link>
           <p className="text-slate-400 text-xs leading-relaxed font-semibold">
             Specializing in{' '}
@@ -80,7 +84,7 @@ const Footer = () => {
             </li>
             <li className="flex items-center space-x-2">
               <Mail className="w-3.5 h-3.5 text-slate-500" />
-              <a href="mailto:sales@cloudinfotech.com.sg" className="hover:text-white transition-colors">sales@cloudinfotech.com.sg</a>
+              <a href="mailto:sales@cloudinfotechshop.com" className="hover:text-white transition-colors">sales@cloudinfotechshop.com</a>
             </li>
           </ul>
         </div>
@@ -107,7 +111,7 @@ const Footer = () => {
       </div>
 
       <div className="max-w-[1280px] mx-auto px-6 py-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
-        <p className="font-semibold uppercase tracking-wider">© 2026 Cloud Infotech Pte. Ltd. All rights reserved.</p>
+        <p className="font-semibold uppercase tracking-wider">© 2026 Cloud Infotech Shop. All rights reserved.</p>
         <div className="flex gap-6">
           <Link className="font-semibold uppercase tracking-wider hover:text-white transition-colors" to="/contact">Terms</Link>
           <Link className="font-semibold uppercase tracking-wider hover:text-white transition-colors" to="/contact">Cookies</Link>

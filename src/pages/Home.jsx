@@ -310,7 +310,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Cloud Info Tech Section */}
+      {/* About Cloud Info Tech Shop Section */}
       <section className="bg-white py-[120px] border-t border-[#E5E7EB]">
         <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
@@ -318,7 +318,7 @@ const Home = () => {
           <div className="lg:col-span-7 space-y-8 text-left">
             <div className="space-y-3">
               <span className="text-[11px] font-extrabold text-[#1453E3] uppercase tracking-[0.2em] block">
-                ABOUT CLOUD INFO TECH
+                ABOUT CLOUD INFO TECH SHOP
               </span>
               <h2 className="font-h2 tracking-tight">
                 Your Trusted <span className="text-[#1453E3]">Technology</span> & <br />
@@ -328,7 +328,7 @@ const Home = () => {
             
             <div className="space-y-6">
               <p className="font-subheading">
-                Cloud Info Tech provides complete technology solutions for businesses and individuals. From laptop sales and repairs to networking infrastructure and CCTV security systems, we help organizations build secure, efficient and reliable digital environments.
+                Cloud Info Tech Shop provides complete technology solutions for businesses and individuals. From laptop sales and repairs to networking infrastructure and CCTV security systems, we help organizations build secure, efficient and reliable digital environments.
               </p>
               <p className="font-subheading">
                 With a focus on quality products, expert support and long-term customer relationships, we deliver practical technology solutions tailored to real business needs.
